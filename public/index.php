@@ -76,6 +76,6 @@ $totalamount = $totalamount * (1 + $taxrate);
 
 echo "Total including tax: $".number_format($totalamount,2)."<p>";
 ?>
-
+<?php require('test.php')  ?>
 </body>
 </html>
