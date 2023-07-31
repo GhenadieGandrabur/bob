@@ -20,8 +20,8 @@
 			<?php endif; ?>
 		</ul>
 	</nav>
-
-	<main>
+    
+	<main class="smalltable">
 	<?=$output?>
 	</main>
 

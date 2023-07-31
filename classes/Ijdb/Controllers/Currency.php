@@ -44,8 +44,7 @@ class Currency {
 
 		$currency = $_POST['currency'];
 		//$currency['date'] = new \DateTime();
-		// var_dump($currency);
-		// die;
+		 
 
 		$this->currencisesTable->save($currency);
 		
@@ -53,19 +52,12 @@ class Currency {
 	}
 
 	public function edit() {
-		//$author = $this->authentication->getUser();
-
 		if (isset($_GET['id'])) {
-			$currency = $this->currencisesTable->findById($_GET['id']);
-			$header = "Edit a currency";	
-		}else{
-			$header = "Add a currency";	
+			$currency = $this->currencisesTable->findById($_GET['id']);				
+		    
 		}
-
-	
-
 		return ['template' => 'currencyedit.html.php',
-				'title' => $header,
+				'title' => "header",
 				'variables' => [
 						'currency' => $currency ?? null,
 						'header' => $header ?? null
