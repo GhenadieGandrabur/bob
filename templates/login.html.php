@@ -1,7 +1,7 @@
 <?php if (isset($error)):?>
 	<div class="errors"><?=$error;?></div>
 <?php endif; ?>
-<form method="post" action="">
+<form method="post" action="" class="forall">
 	<label for="email">Your email address</label>
 	<input type="text" id="email" name="email">
 

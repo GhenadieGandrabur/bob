@@ -11,7 +11,7 @@
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/currency/list">Currency</a></li>			
-			<li><a href="/currency/edit">Add a new Cash</a></li>
+			<li><a href="/rate/list">Rate</a></li>
 			<?php if ($loggedIn): ?>
 			<li><a href="/logout">Log out</a></li>
 			<?php else: ?>

@@ -1,6 +1,6 @@
 <div class="smalltable">
 <h1><?=$header?></h1>
-<form action="" method="post">
+<form action="" method="post" class="forall">
 	<input type="hidden" name="currency[id]" value="<?=$currency->id ?? ''?>">  
 
     <label for="currencyname">Name</label>

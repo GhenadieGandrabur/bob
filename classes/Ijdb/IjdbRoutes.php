@@ -4,6 +4,7 @@ namespace Ijdb;
 class IjdbRoutes implements \Ninja\Routes {
 	private $authorsTable;
 	private $currencisesTable;
+	private $ratesTable;
 	private $authentication;
 
 	public function __construct() {
@@ -11,12 +12,14 @@ class IjdbRoutes implements \Ninja\Routes {
 
 		$this->currencisesTable = new \Ninja\DatabaseTable($pdo, 'currencises', 'id');
 		$this->authorsTable = new \Ninja\DatabaseTable($pdo, 'author', 'id');
+		$this->ratesTable = new \Ninja\DatabaseTable($pdo, 'rates', 'id');
 		$this->authentication = new \Ninja\Authentication($this->authorsTable, 'email', 'password');
 	}
 
 	public function getRoutes(): array {
 		$currencyController = new \Ijdb\Controllers\Currency($this->currencisesTable, $this->authentication);
 		$authorController = new \Ijdb\Controllers\Register($this->authorsTable);
+		$rateController = new \Ijdb\Controllers\Rates($this->ratesTable,$this->currencisesTable);
 		$loginController = new \Ijdb\Controllers\Login($this->authentication);
 
 		$routes = [
@@ -58,6 +61,31 @@ class IjdbRoutes implements \Ninja\Routes {
 			'currency/list' => [
 				'GET' => [
 					'controller' => $currencyController,
+					'action' => 'list'
+				]
+			],
+			'rate/edit' => [
+				'POST' => [
+					'controller' => $rateController,
+					'action' => 'saveEdit'
+				],
+				'GET' => [
+					'controller' => $rateController,
+					'action' => 'edit'
+				],
+				'login' => true
+				
+			],
+			'rate/delete' => [
+				'POST' => [
+					'controller' => $rateController,
+					'action' => 'delete'
+				],
+				'login' => true
+			],
+			'rate/list' => [
+				'GET' => [
+					'controller' => $rateController,
 					'action' => 'list'
 				]
 			],
