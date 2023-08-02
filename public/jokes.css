@@ -6,20 +6,20 @@ header {display: block;  background-color: #3cbc8d; padding: 20px; border-bottom
 nav {background-color: #443A5C; margin-bottom: 30px;}
 
 nav a {color: white; text-decoration: none;}
-nav a:hover {color: #ddd;}
-nav ul {display: table; width: 100%; }
-nav li {display: table-cell; padding: 1em;}
+nav a:hover {color: #ddd; }
+nav ul {display: table; width: 100%; padding:10px;}
+nav li {display:inline;margin-right: 20px; }
 
 /* main {overflow: auto; min-height: 30vh; background-color: #f7f7f7; width: 1000px; margin: auto; box-shadow: -1000px 0 0 #f7f7f7, 1000px 0 0 #f7f7f7; padding-top: 20px;} */
 
 footer {padding: 1em; background-color: #FFC9A7 ; font-size: 0.8em;}
 
-p {margin-bottom: 1em;}
+/* p {margin-bottom: 1em;} */
 
-body {font-size: 1.2em; font-family: arial, helvetica, sans-serif}
-input, label, select, textarea {float: left; width: 15em; margin-bottom: 1em;  padding: 0.5em;}
+body { font-family: arial, helvetica, sans-serif}
+input, label, select, textarea {float: left; width:10px;}
 label {clear: left; padding: 0; margin: 0;}
- input[type="submit"] {margin-left:1px; width:auto; padding:3px; clear: both; font-size:14px;} 
+ input[type="submit"] {margin-left:1px; width:auto; padding:1px; clear: both; background-color:#fff; border:none} 
 form {overflow: auto; clear: both; display: block;}
 
 /* blockquote {display: table; margin-bottom: 1em; border-bottom: 1px solid #ccc; padding: 0.5em; }
@@ -29,7 +29,7 @@ blockquote form {  display: table-cell; width: 10%;} */
 .errors {padding: 1em; border: 1px solid red; background-color: lightyellow; color: red; margin-bottom: 1em; overflow: auto;}
 .errors ul {margin-left: 1em;}
 
-.smalltable{width:50%; margin: auto;} 
+.smalltable{width:70%; margin: auto;} 
 
 table, td, th {  
     border: 1px solid #ddd;
@@ -42,5 +42,7 @@ table, td, th {
   }
   
   th, td {
-    padding: 5px;
+    padding: 1px; 
   }
+
+  tr:hover{background-color: #ccc;}
