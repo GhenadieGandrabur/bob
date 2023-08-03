@@ -2,11 +2,11 @@
 namespace Ninja;
 
 class DatabaseTable {
-	private $pdo;
-	private $table;
-	private $primaryKey;
-	private $className;
-	private $constructorArgs;
+	protected $pdo;
+	protected $table;
+	protected $primaryKey;
+	protected $className;
+	protected $constructorArgs;
 
 	public function __construct(\PDO $pdo, string $table, string $primaryKey, string $className = '\stdClass', array $constructorArgs = []) {
 		$this->pdo = $pdo;
@@ -16,7 +16,7 @@ class DatabaseTable {
 		$this->constructorArgs = $constructorArgs;
 	}
 
-	private function query($sql, $parameters = []) {
+	protected function query($sql, $parameters = []) {
 		$query = $this->pdo->prepare($sql);
 		$query->execute($parameters);
 		return $query;

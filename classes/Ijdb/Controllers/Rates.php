@@ -1,5 +1,7 @@
 <?php
 namespace Ijdb\Controllers;
+
+use Ijdb\Repositories\RateRepository;
 use \Ninja\Authentication;
 use \Ninja\DatabaseTable;
 
@@ -9,7 +11,7 @@ class Rates
     private $ratesTable;
     //private $authentication;
 
-    public function __construct(DatabaseTable $rateTable, DatabaseTable $currenciesTable /*DatabaseTable $authorsTable//, Authentication $authentication*/)
+    public function __construct(RateRepository $rateTable, DatabaseTable $currenciesTable /*DatabaseTable $authorsTable//, Authentication $authentication*/)
     {
         $this->ratesTable = $rateTable;        
         $this->currenciesTable = $currenciesTable;
@@ -22,7 +24,7 @@ class Rates
             'title' => "Rates list",
             'variables' => [
                 'totalrates' => $this->ratesTable->total(),
-                'rates' => $this->ratesTable->findAll(),
+                'rates' => $this->ratesTable->getAll(),
             ],
         ];
     }
@@ -54,8 +56,8 @@ class Rates
     {
         if (isset($_GET['id'])) {
             $rate = $this->ratesTable->findById($_GET['id']);
-            $currencies = $this->currenciesTable->findById($rate->currency_id);   
-            $rate->currency_id = $currencies->name;
+            $currencies = $this->currenciesTable->findAll();   
+         
                    
             $header = "Rate edit";
         }else{

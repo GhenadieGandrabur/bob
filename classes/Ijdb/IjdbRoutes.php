@@ -1,6 +1,11 @@
 <?php
 namespace Ijdb;
 
+use Ijdb\Controllers\Currency;
+use Ijdb\Repositories\RateRepository;
+use Ninja\DatabaseTable;
+use Ninja\Authentication;
+
 class IjdbRoutes implements \Ninja\Routes {
 	private $authorsTable;
 	private $currenciesTable;
@@ -10,14 +15,14 @@ class IjdbRoutes implements \Ninja\Routes {
 	public function __construct() {
 		include __DIR__ . '/../../includes/DatabaseConnection.php';
 
-		$this->currenciesTable = new \Ninja\DatabaseTable($pdo, 'currencies', 'id');
-		$this->authorsTable = new \Ninja\DatabaseTable($pdo, 'author', 'id');
-		$this->ratesTable = new \Ninja\DatabaseTable($pdo, 'rates', 'id');
-		$this->authentication = new \Ninja\Authentication($this->authorsTable, 'email', 'password');
+		$this->currenciesTable = new DatabaseTable($pdo, 'currencies', 'id');
+		$this->authorsTable = new DatabaseTable($pdo, 'author', 'id');
+		$this->ratesTable = new RateRepository($pdo, 'rates', 'id');
+		$this->authentication = new Authentication($this->authorsTable, 'email', 'password');
 	}
 
 	public function getRoutes(): array {
-		$currencyController = new \Ijdb\Controllers\Currency($this->currenciesTable, $this->authentication);
+		$currencyController = new Currency($this->currenciesTable, $this->authentication);
 		$authorController = new \Ijdb\Controllers\Register($this->authorsTable);
 		$rateController = new \Ijdb\Controllers\Rates($this->ratesTable,$this->currenciesTable);
 		$loginController = new \Ijdb\Controllers\Login($this->authentication);

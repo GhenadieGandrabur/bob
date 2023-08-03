@@ -6,13 +6,13 @@
   </tr>
 
 <?php foreach($rates as $rate): ?><tr>  
-  <td><?=$rate->id?></td>    
-  <td><?=$rate->date?></td>    
-  <td><?=$rate->currency_id?></td>    
-  <td><?=$rate->rate?></td>    
-  <td><a href="/rate/edit?id=<?=$rate->id?>">Edit</a></td>
+  <td><?=$rate['id']?></td>    
+  <td><?=$rate['date']?></td>    
+  <td><?=$rate['currency_name']?></td>    
+  <td><?=$rate['rate']?></td>    
+  <td><a href="/rate/edit?id=<?=$rate['id']?>">Edit</a></td>
   <td><form action="/rate/delete" method="post" class="fortableform">
-    <input type="hidden" name="id" value="<?=$rate->id?>">
+    <input type="hidden" name="id" value="<?=$rate['id']?>">
     <input type="submit" value="❌">
   </form>
   </td>
