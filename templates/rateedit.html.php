@@ -8,8 +8,8 @@
     <label for="ratecurrency_id">Currency</label>
     <select name="rate[currency_id]" id="currency_id">
     <?php foreach ($currencies as $currency): ?>
-        <option value="<?= $currency['id'] ?>" <?= ($rate['currency_id'] == $currency['id']) ? 'selected' : '' ?>>
-            <?= $currency['name'] ?>
+        <option value="<?= $currency->id??"" ?>" <?= ($rate->currency_id??""== $currency->id??"") ? 'selected' : '' ?>>
+            <?= $currency->name ??""?>
         </option>
     <?php endforeach; ?>
 </select>   

@@ -5,14 +5,14 @@ use \Ninja\DatabaseTable;
 
 class Rates
 {
-    private $currensisesTable;
+    private $currenciesTable;
     private $ratesTable;
     //private $authentication;
 
-    public function __construct(DatabaseTable $rateTable, DatabaseTable $currensisesTable /*DatabaseTable $authorsTable//, Authentication $authentication*/)
+    public function __construct(DatabaseTable $rateTable, DatabaseTable $currenciesTable /*DatabaseTable $authorsTable//, Authentication $authentication*/)
     {
         $this->ratesTable = $rateTable;        
-        $this->currensisesTable = $currensisesTable;
+        $this->currenciesTable = $currenciesTable;
        // $this->authentication = $authentication;
     }
 
@@ -54,8 +54,8 @@ class Rates
     {
         if (isset($_GET['id'])) {
             $rate = $this->ratesTable->findById($_GET['id']);
-            $currency = $this->currensisesTable->findById($rate->currency_id);   
-            //$rate->currency_id = $currency->name;
+            $currencies = $this->currenciesTable->findById($rate->currency_id);   
+            $rate->currency_id = $currencies->name;
                    
             $header = "Rate edit";
         }else{
@@ -65,7 +65,7 @@ class Rates
             'title' => "header",
             'variables' => [
                 'rate' => $rate ?? null,
-                'currency' => $currensy ?? null,
+                'currencies' => $currencies ?? null,
                 'header' => $header ?? null,
             ],
         ];
