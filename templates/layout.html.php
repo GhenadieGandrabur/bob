@@ -8,16 +8,17 @@
 	<body>
 	<nav>
 		
+		<?php if ($loggedIn): ?>
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/currency/list">Currency</a></li>			
 			<li><a href="/rate/list">Rate</a></li>
-			<?php if ($loggedIn): ?>
 			<li><a href="/logout">Log out</a></li>
-			<?php else: ?>
 			<li style="float:right;"><a href="/login">Log in</a></li>
-			<?php endif; ?>
 		</ul>
+		<?php else: ?>
+			Test
+		<?php endif; ?>
 	</nav>
     
 	<main class="smalltable">

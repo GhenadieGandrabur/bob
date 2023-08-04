@@ -33,19 +33,19 @@
  }
 
  nav a:hover {
-   color: #ddd;
+   color: #333;
  }
 
  nav ul {
    display: table;
-   width: 1000px;
-   margin: auto;
+   width:auto;
+   margin:10px;
  }
 
  nav li {
    display: table-cell;
    text-align: center;
-   padding: 1em;
+   padding: 10px 20px;
  }
 
   main {

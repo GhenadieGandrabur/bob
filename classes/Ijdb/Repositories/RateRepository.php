@@ -9,14 +9,4 @@ class RateRepository extends DatabaseTable{
     {
         return $this->query("select r.*, c.name as currency_name from rates r left join currencies c on r.currency_id=c.id");
     }
-
-
-
-
-
-
-
-
-
-
 }

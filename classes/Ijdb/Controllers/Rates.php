@@ -40,9 +40,7 @@ class Rates
 
     public function saveEdit()
     {
-        // if (isset($_GET['id'])) {
-        //     $rate = $this->ratesTable->findById($_GET['id']);
-        // }
+       
 
         $rate = $_POST['rate'];
         $rate['date'] = new \DateTime();
@@ -56,9 +54,7 @@ class Rates
     {
         if (isset($_GET['id'])) {
             $rate = $this->ratesTable->findById($_GET['id']);
-            $currencies = $this->currenciesTable->findAll();   
-         
-                   
+            $currencies = $this->currenciesTable->findAll();                   
             $header = "Rate edit";
         }else{
             $header = "Add a new rate";
