@@ -5,26 +5,29 @@ use Ijdb\Repositories\RateRepository;
 use \Ninja\Authentication;
 use \Ninja\DatabaseTable;
 
-class Rates
+class Incomes
 {
     private $currenciesTable;
     private $ratesTable;
+    private $incomesTable;
+
+
     //private $authentication;
 
-    public function __construct(RateRepository $rateTable, DatabaseTable $currenciesTable /*DatabaseTable $authorsTable//, Authentication $authentication*/)
+    public function __construct(DatabaseTable $rateTable, DatabaseTable $currenciesTable, DatabaseTable $incomesTable)
     {
         $this->ratesTable = $rateTable;        
         $this->currenciesTable = $currenciesTable;
-       // $this->authentication = $authentication;
+        $this->incomesTable = $incomesTable;
     }
 
     function list() {
 
-        return ['template' => 'rates.html.php',
-            'title' => "Rates list",
+        return ['template' => 'incomes.html.php',
+            'title' => "Incomes list",
             'variables' => [
-                'totalrates' => $this->ratesTable->total(),
-                'rates' => $this->ratesTable->getAll(),
+                'totalIcomes' => $this->incomesTable->total(),
+                'incomes' => $this->incomesTable->findAll()
             ],
         ];
     }
@@ -33,36 +36,38 @@ class Rates
 
     public function delete()
     {
-        $rate = $this->ratesTable->findById($_POST['id']);
-        $this->ratesTable->delete($_POST['id']);
-        header('location: /rate/list');
+        $income = $this->incomesTable->findById($_POST['id']);
+        $this->incomesTable->delete($_POST['id']);
+        header('location: /income/list');
     }
 
     public function saveEdit()
     {
-        $rate = $_POST['rate'];       
-        $rate['date'] = new \DateTime();
-        $this->ratesTable->save($rate);
+        $income = $_POST['income'];       
+      
+        $this->incomesTable->save($income);
 
-        header('location: /rate/list');
+        header('location: /income/list');
     }
 
     public function edit()
     {
         if (isset($_GET['id'])) {
             $rate = $this->ratesTable->findById($_GET['id']);
-            $currencies = $this->currenciesTable->findAll();  
+            $currencies = $this->currenciesTable->findAll(); 
+            $income = $this->incomesTable->findAll();
             $header = "Edit rate";       
         }else{
             $currencies = $this->currenciesTable->findAll();
             $header = "New rate";
                 }        
 		
-        return ['template' => 'rateedit.html.php',
+        return ['template' => 'incomeedit.html.php',
             'title' => $header,
             'variables' => [
                 'rate' => $rate ?? null,
                 'currencies' => $currencies ?? null,
+                'incomes' => $incomes ?? null,
                 'header'=>$header
                 
             ],

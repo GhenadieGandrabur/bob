@@ -10,12 +10,14 @@ class IjdbRoutes implements \Ninja\Routes {
 	private $authorsTable;
 	private $currenciesTable;
 	private $ratesTable;
+	private $incomesTable;
 	private $authentication;
 
 	public function __construct() {
 		include __DIR__ . '/../../includes/DatabaseConnection.php';
 
 		$this->currenciesTable = new DatabaseTable($pdo, 'currencies', 'id');
+		$this->incomesTable = new DatabaseTable($pdo, 'incomes', 'id');
 		$this->authorsTable = new DatabaseTable($pdo, 'author', 'id');
 		$this->ratesTable = new RateRepository($pdo, 'rates', 'id');
 		$this->authentication = new Authentication($this->authorsTable, 'email', 'password');
@@ -23,10 +25,10 @@ class IjdbRoutes implements \Ninja\Routes {
 
 	public function getRoutes(): array {
 		$currencyController = new Currency($this->currenciesTable, $this->authentication);
+		$incomeController = new Controllers\Incomes($this->currenciesTable, $this->ratesTable,$this->incomesTable);
 		$authorController = new Controllers\Register($this->authorsTable);
 		$rateController = new Controllers\Rates($this->ratesTable,$this->currenciesTable);
 		$loginController = new Controllers\Login($this->authentication);
-
 		$routes = [
 			'author/register' => [
 				'GET' => [
@@ -89,6 +91,30 @@ class IjdbRoutes implements \Ninja\Routes {
 					'action' => 'list'
 				],'login' => true
 			],
+			'income/edit' => [
+				'POST' => [
+					'controller' => $incomeController,
+					'action' => 'saveEdit'
+				],
+				'GET' => [
+					'controller' => $incomeController,
+					'action' => 'edit'
+				], 'login' => true
+				
+			],
+			'income/delete' => [
+				'POST' => [
+					'controller' => $incomeController,
+					'action' => 'delete'
+				],	'login' => true
+			],	
+			'income/list' => [
+				'GET' => [
+					'controller' => $incomeController,
+					'action' => 'list'
+				],'login' => true
+			],
+			
 			
 			'login/error' => [
 				'GET' => [
