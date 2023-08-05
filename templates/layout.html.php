@@ -14,11 +14,11 @@
 			<li><a href="/currency/list">Currency</a></li>			
 			<li><a href="/rate/list">Rate</a></li>
 			<li><a href="/logout">Log out</a></li>
+			<?php else: ?>
 			<li style="float:right;"><a href="/login">Log in</a></li>
 		</ul>
-		<?php else: ?>
-			Test
 		<?php endif; ?>
+			
 	</nav>
     
 	<main class="smalltable">
