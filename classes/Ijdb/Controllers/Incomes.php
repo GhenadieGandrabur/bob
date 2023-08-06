@@ -52,21 +52,17 @@ class Incomes
 
     public function edit()
     {
-        if (isset($_GET['id'])) {
-            $rate = $this->ratesTable->findById($_GET['id']);
-            $currencies = $this->currenciesTable->findAll(); 
-            $income = $this->incomesTable->findAll();
+        if (isset($_GET['id'])) {                        
+            $incomes = $this->incomesTable->findAll();
             $header = "Edit rate";       
         }else{
-            $currencies = $this->currenciesTable->findAll();
+            $incomes = $this->incomesTable->findAll();
             $header = "New rate";
                 }        
 		
         return ['template' => 'incomeedit.html.php',
             'title' => $header,
-            'variables' => [
-                'rate' => $rate ?? null,
-                'currencies' => $currencies ?? null,
+            'variables' => [                                
                 'incomes' => $incomes ?? null,
                 'header'=>$header
                 

@@ -3,14 +3,12 @@ namespace Ijdb\Controllers;
 use \Ninja\DatabaseTable;
 use \Ninja\Authentication;
 
-class Currency {
-	//private $authorsTable;
+class Currency {	
 	private $currencisesTable;
 	private $authentication;
 
-	public function __construct(DatabaseTable $currencyTable/*, DatabaseTable $authorsTable*/, Authentication $authentication) {
-		$this->currencisesTable = $currencyTable;
-		//$this->authorsTable = $authorsTable;
+	public function __construct(DatabaseTable $currencyTable, Authentication $authentication) {
+		$this->currencisesTable = $currencyTable;		
 		$this->authentication = $authentication;
 	}
 
@@ -38,13 +36,8 @@ class Currency {
 	}
 
 	public function saveEdit() {
-		// if (isset($_GET['id'])) {
-		// 	$currency = $this->currencisesTable->findById($_GET['id']);			
-		// }
-
-		$currency = $_POST['currency'];
-		//$currency['date'] = new \DateTime();
-		 
+	
+		$currency = $_POST['currency'];		 
 
 		$this->currencisesTable->save($currency);
 		
@@ -53,8 +46,7 @@ class Currency {
 
 	public function edit() {
 		if (isset($_GET['id'])) {
-			$currency = $this->currencisesTable->findById($_GET['id']);				
-		    
+			$currency = $this->currencisesTable->findById($_GET['id']);			    
 		}
 		return ['template' => 'currencyedit.html.php',
 				'title' => "header",

@@ -14,7 +14,7 @@ class Login {
 
 	public function processLogin() {
 		if ($this->authentication->login($_POST['email'], $_POST['password'])) {
-			header('location: /login/success');
+			header('location: /income/list');
 		}
 		else {
 			return ['template' => 'login.html.php',
@@ -27,7 +27,7 @@ class Login {
 	}
 
 	public function success() {
-		return ['template' => 'loginsuccess.html.php', 'title' => 'Login Successful'];
+		return ['template' => 'incomes.html.php', 'title' => 'Login Successful'];
 	}
 
 	public function error() {
@@ -36,6 +36,7 @@ class Login {
 
 	public function logout() {
 		unset($_SESSION);
+		session_destroy();
 		return ['template' => 'logout.html.php', 'title' => 'You have been logged out'];
 	}
 }

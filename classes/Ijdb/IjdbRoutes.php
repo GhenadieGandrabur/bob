@@ -17,9 +17,9 @@ class IjdbRoutes implements \Ninja\Routes {
 		include __DIR__ . '/../../includes/DatabaseConnection.php';
 
 		$this->currenciesTable = new DatabaseTable($pdo, 'currencies', 'id');
+		$this->ratesTable = new RateRepository($pdo, 'rates', 'id');
 		$this->incomesTable = new DatabaseTable($pdo, 'incomes', 'id');
 		$this->authorsTable = new DatabaseTable($pdo, 'author', 'id');
-		$this->ratesTable = new RateRepository($pdo, 'rates', 'id');
 		$this->authentication = new Authentication($this->authorsTable, 'email', 'password');
 	}
 

@@ -22,7 +22,7 @@
 			
 	</nav>
     
-	<main class="smalltable">
+	<main>
 	<?=$output?>
 	</main>
 
