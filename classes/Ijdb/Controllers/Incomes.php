@@ -11,9 +11,6 @@ class Incomes
     private $ratesTable;
     private $incomesTable;
 
-
-    //private $authentication;
-
     public function __construct(DatabaseTable $rateTable, DatabaseTable $currenciesTable, DatabaseTable $incomesTable)
     {
         $this->ratesTable = $rateTable;        
@@ -22,7 +19,6 @@ class Incomes
     }
 
     function list() {
-
         return ['template' => 'incomes.html.php',
             'title' => "Incomes list",
             'variables' => [
@@ -52,20 +48,17 @@ class Incomes
 
     public function edit()
     {
-        if (isset($_GET['id'])) {                        
+        if (isset($_GET['id']))
+        {                        
             $incomes = $this->incomesTable->findAll();
-            $header = "Edit rate";       
-        }else{
-            $incomes = $this->incomesTable->findAll();
-            $header = "New rate";
-                }        
+            $curensies = $this->currenciesTable->findAll();                  
+        } 
 		
         return ['template' => 'incomeedit.html.php',
-            'title' => $header,
+            'title' => "Incomes",
             'variables' => [                                
                 'incomes' => $incomes ?? null,
-                'header'=>$header
-                
+                'currensies'=>$curensies?? null                
             ],
         ];
     }

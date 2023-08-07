@@ -1,23 +1,26 @@
 <?php
-include __DIR__ . '/../includes/DatabaseConnection.php';
-include   __DIR__ . '/../classes/Ninja/DatabaseTable.php';
-include   __DIR__ . '/../classes/Ninja/Authentication.php';
-include   __DIR__ . '/../classes/Ijdb/Entity/Author.php';
+$pdo = new PDO('mysql:host=localhost;dbname=zp;charset=utf8', 'root', '');
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$jokesTable = new  \Ninja\DatabaseTable($pdo, 'joke', 'id');
-$authorTable = new  \Ninja\DatabaseTable($pdo, 'author', 'id');
-$author = new \Ijdb\Entity\Author($authorTable);
-$authentication = new  \Ninja\Authentication($authorTable, 'authorId', 'password');
+class Rate
+{
+   private $table;
+   public function __construct($table)
+   {
+    $this->table = $table;
+   }
 
+   public function findAll(){
+    $result = ('SELECT * FROM ' . $this->table);
+    return $result;
+}
+   
 
+}
 
+$rates = new Rate('rates');
 
-    $authorObject = new \Ijdb\Entity\Author($authorTable);
-
-    $joke = $_POST['joke'];
-    $joke['jokedate'] = new \DateTime();
-
-    $authorObject->addJoke($joke);
-
-    header('location: /joke/list');
-
+foreach($rates as $rare)
+{
+    echo "Rate " . $rate['rate'];
+}
