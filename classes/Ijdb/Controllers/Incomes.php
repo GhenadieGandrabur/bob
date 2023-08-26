@@ -18,17 +18,15 @@ class Incomes
         $this->incomesTable = $incomesTable;
     }
 
-    function list() {
+    function list() {       
         return ['template' => 'incomes.html.php',
             'title' => "Incomes list",
             'variables' => [
                 'totalIcomes' => $this->incomesTable->total(),
-                'incomes' => $this->incomesTable->findAll()
+                'incomes' => $this->incomesTable->findAll()                               
             ],
         ];
     }
-
-
 
     public function delete()
     {

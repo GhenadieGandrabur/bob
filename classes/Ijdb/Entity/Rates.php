@@ -1,11 +1,12 @@
 <?php
 namespace Ijdb\Entity;
 
-class Currency {
+class Rates {
 
     public $id;
-    public $name;
-    public $ratesTable;
+    public $date;
+    public $currency_id;
+    public $rate;
 
     public function __construct(\Ninja\DatabaseTable $ratesTable)
     {
@@ -15,11 +16,13 @@ class Currency {
     public function getRate()
     {
         return $this->ratesTable->find('currency_id', $this->id);
-    }    
+    }   
 
-    public function addRate($rate) 
-    {
-        $rate['currency_id'] = $this->id;
-        $this->ratesTable->save($rate);
-    }
+    public function addRate($rate) {
+
+    $rate['currency_id'] = $this->id;
+
+    $this->ratesTable->save($rate);
+}
+
 }

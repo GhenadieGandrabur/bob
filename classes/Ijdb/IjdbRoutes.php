@@ -68,7 +68,7 @@ class IjdbRoutes implements \Ninja\Routes {
 					'action' => 'list'
 				],'login' => true
 			],
-			'rate/edit' => [
+			'rate/saveEdit' => [
 				'POST' => [
 					'controller' => $rateController,
 					'action' => 'saveEdit'
