@@ -40,10 +40,9 @@ class Rates
 
     public function saveEdit()
     {
-        $rate = $this->$currenciesTable->getName();
-        $joke = $_POST['joke'];
-        $joke['jokedate'] = new \DateTime();
-        $author->addJoke($joke);
+        $rate = $_POST['rate'];
+        $rate['date'] = new \DateTime();      
+        $this->ratesTable->save($rate);
         header('location: /rate/list');
 
     }

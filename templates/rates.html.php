@@ -7,7 +7,7 @@
 
 <?php foreach($rates as $rate): ?><tr>  
   <td><?=$rate['id']?></td>    
-  <td><?=$rate['date']?></td>    
+  <td><?= date('d.m.Y', strtotime($rate['date'])) ?></td>    
   <td><?=$rate['currency_name']?></td>    
   <td><?=$rate['rate']?></td>    
   <td><a href="/rate/edit?id=<?=$rate['id']?>">Edit</a></td>
