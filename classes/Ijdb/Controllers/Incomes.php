@@ -52,22 +52,29 @@ class Incomes
         header('location: /income/list');
     }
 
-    public function edit()
-        {
-            if (isset($_GET['id']))
-            {                        
-                $income = $this->incomesTable->findById($_GET['id']);
-                $currencies = $this->incomesTable->getAllCurrencies(); // Fetch all currencies for the dropdown
-            } 
-                
-            return ['template' => 'incomeedit.html.php',
-                'title' => "Incomes",
-                'variables' => [                                
-                    'income' => $income ?? null,
-                    'currencies' => $currencies ?? null
-                ],
-            ];
-        }
+    
+        public function edit()
+{
+    if (isset($_GET['id']))
+    {                        
+        $incomes = $this->incomesTable->findById($_GET['id']);
+        $currencies = $this->incomesTable->getAllCurrencies();
+    } 
+    else
+    {
+        $incomes = []; // Initialize an empty array if no income is found
+        $currencies = $this->incomesTable->getAllCurrencies();
+    }
+		
+    return ['template' => 'incomeedit.html.php',
+        'title' => "Incomes",
+        'variables' => [                                
+            'incomes' => $income?? null,
+            'currencies' => $currencies ?? null
+        ],
+    ];
+}
+
 
 
 

@@ -6,13 +6,13 @@
         <input type="date" id='date' name="income[date]" value = "<?=$income['date']??""?>" placeholder="date">
          
         <input type="Rate" id='rate' name="income[rate]" value = "<?=$income['rate']??""?>" placeholder="rate" size="5">    
-        <select id="currency_id" name="income[currency_id]">
-                <?php foreach ($currencies as $currency): ?>
-                    <option value="<?= $currency['id'] ?>" <?= ($income['currency_id'] == $currency['id']) ? 'selected' : '' ?>>
-                        <?= $currency['name'] ?>
-                    </option>
-                <?php endforeach; ?>
-        </select>
+<select id="currency_id" name="income[currency_id]">
+<?php foreach ($currencies as $currency): ?>
+<option value="<?= $currency['id'] ?>" <?= ($income['currency_id'] == $currency['id']) ? 'selected' : '' ?>>
+<?= $currency['name'] ?>
+</option>
+<?php endforeach; ?>
+</select>
       
         
        
