@@ -15,17 +15,17 @@
   </tr>
 
 <?php foreach($incomes as $income): ?><tr>  
-  <td><?=$income->id?></td>    
-  <td><?=$income->date?></td>    
-  <td><?=$income->currency_id?></td>    
-  <td><?=$income->rate?></td>    
-  <td><?=$income->facevalue?></td>    
-  <td><?=$income->quantity?></td>    
-  <td><?=$income->amount?></td>    
-  <td><?=$income->summ?></td>    
-  <td><a href="/income/edit?id=<?=$income->id?>">Edit</a></td>
+  <td><?=$income['id']?></td>    
+  <td><?=$income['date']?></td>    
+  <td><?=$income['currency_name']?></td>    
+  <td><?=$income['rate']?></td>    
+  <td><?=$income['facevalue']?></td>    
+  <td><?=$income['quantity']?></td>    
+  <td><?=$income['amount']?></td>    
+  <td><?=$income['summ']?></td>    
+  <td><a href="/income/edit?id=<?=$income['id']?>">Edit</a></td>
   <td><form action="/income/delete" method="post" class="fortableform">
-    <input type="hidden" name="id" value="<?=$income->id?>">
+    <input type="hidden" name="id" value="<?=$income['id']?>">
     <input type="submit" value="❌">
   </form>
   </td>

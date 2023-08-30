@@ -3,6 +3,7 @@ namespace Ijdb;
 
 use Ijdb\Controllers\Currency;
 use Ijdb\Repositories\RateRepository;
+use Ijdb\Repositories\IncomesRepository;
 use Ninja\DatabaseTable;
 use Ninja\Authentication;
 
@@ -18,14 +19,14 @@ class IjdbRoutes implements \Ninja\Routes {
 
 		$this->currenciesTable = new DatabaseTable($pdo, 'currencies', 'id');
 		$this->ratesTable = new RateRepository($pdo, 'rates', 'id');
-		$this->incomesTable = new DatabaseTable($pdo, 'incomes', 'id');
+		$this->incomesTable = new IncomesRepository($pdo, 'incomes', 'id');
 		$this->authorsTable = new DatabaseTable($pdo, 'author', 'id');
 		$this->authentication = new Authentication($this->authorsTable, 'email', 'password');
 	}
 
 	public function getRoutes(): array {
 		$currencyController = new Currency($this->currenciesTable, $this->authentication);
-		$incomeController = new Controllers\Incomes($this->currenciesTable, $this->ratesTable,$this->incomesTable);
+		$incomeController = new Controllers\Incomes($this->incomesTable);
 		$authorController = new Controllers\Register($this->authorsTable);
 		$rateController = new Controllers\Rates($this->ratesTable,$this->currenciesTable);
 		$loginController = new Controllers\Login($this->authentication);
