@@ -9,16 +9,16 @@ use \Ninja\Authentication;
 use \Ninja\DatabaseTable;
 
 class Incomes
-{
-  //  private $currenciesTable;
+{  
+    private $currenciesTable;
    // private $ratesTable;
     private $incomesTable;
 
 
-    public function __construct(IncomesRepository $incomesTable)
+    public function __construct(IncomesRepository $incomesTable, DatabaseTable $currenciesTable)
     {
         //$this->ratesTable = $ratesTable;        
-       // $this->currenciesTable = $currenciesTable;
+        $this->currenciesTable = $currenciesTable;
         $this->incomesTable = $incomesTable;
     }
 
@@ -29,14 +29,14 @@ class Incomes
             'title' => "Incomes list",
             'variables' => [
                 'totalIcomes' => $this->incomesTable->total(),
-                'incomes' => $this->incomesTable->getAll()                              
+                'incomess' => $this->incomesTable->getAll()                              
             ],
         ];
     }
 
     public function delete()
     {
-        $income = $this->incomesTable->findById($_POST['id']);
+        $incomes = $this->incomesTable->findById($_POST['id']);
         $this->incomesTable->delete($_POST['id']);
         header('location: /income/list');
     }
@@ -57,25 +57,21 @@ class Incomes
 {
     if (isset($_GET['id']))
     {                        
-        $incomes = $this->incomesTable->findById($_GET['id']);
+        $income = $this->incomesTable->findById($_GET['id']);      
         $currencies = $this->incomesTable->getAllCurrencies();
     } 
     else
     {
-        $incomes = []; // Initialize an empty array if no income is found
-        $currencies = $this->incomesTable->getAllCurrencies();
+         $income = []; // Initialize an empty array if no incomes is found
+         $currencies = $this->incomesTable->getAllCurrencies();
     }
 		
     return ['template' => 'incomeedit.html.php',
         'title' => "Incomes",
         'variables' => [                                
-            'incomes' => $income?? null,
+            'income' => $income?? null,
             'currencies' => $currencies ?? null
         ],
     ];
 }
-
-
-
-
 }

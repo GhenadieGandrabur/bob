@@ -26,7 +26,7 @@ class IjdbRoutes implements \Ninja\Routes {
 
 	public function getRoutes(): array {
 		$currencyController = new Currency($this->currenciesTable, $this->authentication);
-		$incomeController = new Controllers\Incomes($this->incomesTable);
+		$incomeController = new Controllers\Incomes($this->incomesTable, $this->currenciesTable);
 		$authorController = new Controllers\Register($this->authorsTable);
 		$rateController = new Controllers\Rates($this->ratesTable,$this->currenciesTable);
 		$loginController = new Controllers\Login($this->authentication);

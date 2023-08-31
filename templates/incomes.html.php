@@ -14,9 +14,9 @@
 <th>Delete</th>
   </tr>
 
-<?php foreach($incomes as $income): ?><tr>  
+<?php foreach($incomess as $income): ?><tr>  
   <td><?=$income['id']?></td>    
-  <td><?=$income['date']?></td>    
+  <td><?= date('d.m.Y', strtotime($income['date'])) ?></td>    
   <td><?=$income['currency_name']?></td>    
   <td><?=$income['rate']?></td>    
   <td><?=$income['facevalue']?></td>    
