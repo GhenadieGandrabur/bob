@@ -66,18 +66,46 @@
    font-family: arial, helvetica, sans-serif
  }
 .incomeedit{float: left; overflow: hidden;}
+
+.login form { width: 300px;  margin: 0 auto; }
+.login label{ margin-bottom: 5px;}
+.login input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.login input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #69c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.login input[type="submit"]:hover {
+  background-color: #58a;
+}
+ 
+
 .incomeedit select{padding: 0;}
  .forall input, label, select, textarea {   width:100px;    margin-bottom: 1px;    padding: 3px;  }
  
  .forall label { clear: left; padding: 0;  margin: 0;}
- 
- .forall input[type="submit"] {   margin: 10px;   width: auto;   padding:5px 10px;   clear: both;   font-size: 1em; }
- .forall form {overflow: auto;   clear: both;   display: block; }
 
-  .forforminput input[type="submit"] {margin-left:0.5em; background-color: #FFC9A7;   width: auto;   padding: 0;   clear: both;   font-size:10px; }
- .forforminput input, label, select, textarea { padding: 3px;  }
  
- .forall form {overflow: auto;   clear: both;   display: block; }
+ .forall input[type="submit"] {overflow: hidden;   margin: 10px;   width: auto;   padding:5px 10px;   clear: both;   font-size: 1em; }
+
+ /* .forall form {overflow: auto;   clear: both;   display: block; } */
+
+  /* .forforminput input[type="submit"] {margin-left:0.5em; background-color: #FFC9A7;   width: auto;   padding: 0;   clear: both;   font-size:10px; }
+ .forforminput input, label, select, textarea { padding: 3px;  } */
+ 
+
 
  /* blockquote {
    display: table;

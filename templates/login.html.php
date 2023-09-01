@@ -1,7 +1,8 @@
 <?php if (isset($error)):?>
 	<div class="errors"><?=$error;?></div>
 <?php endif; ?>
-<form method="post" action="" class="forall">
+<div class="login">
+<form method="post" action="" >
 	<label for="email">Your email address</label>
 	<input type="text" id="email" name="email">
 
@@ -10,3 +11,4 @@
 
 	<input type="submit" name="login" value="Log in">
 </form>
+</div>
