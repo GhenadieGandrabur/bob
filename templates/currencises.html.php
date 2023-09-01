@@ -1,4 +1,4 @@
-<div>
+<div style="width:400px; margin:auto;">
 <p><?=$totalcurrencises?> Currencises <samp style="float:right"><a href="/currency/edit">Ad a currency</a></samp></p>
 <table>
   <tr>
