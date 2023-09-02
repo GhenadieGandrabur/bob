@@ -43,9 +43,8 @@ class Incomes
 
     public function saveEdit()
     {
-        $income = $_POST['income'];
-        $this->incomesTable->debug($income);
-        $income['date'] = new \DateTime();     
+        $income = $_POST['income'];       
+        $income['date'] = new \DateTime();
         
         $this->incomesTable->save($income);
 
@@ -59,13 +58,14 @@ class Incomes
     {                        
         $income = $this->incomesTable->findById($_GET['id']);      
         $currencies = $this->incomesTable->getAllCurrencies();
-        $this->incomesTable->debug($income);
-        $this->incomesTable->debug($currencies);
+            // $this->incomesTable->debug($income);
+            // $this->incomesTable->debug($currencies);         
     } 
     else
     {
          empty($income); // Initialize an empty array if no incomes is found
          $currencies = $this->incomesTable->getAllCurrencies();
+         
     }
 		
     return ['template' => 'incomeedit.html.php',
@@ -76,4 +76,6 @@ class Incomes
         ],
     ];
 }
+
+
 }
