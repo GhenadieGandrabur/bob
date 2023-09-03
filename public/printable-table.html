@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable Table</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid;
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Count your money</h1>
+    <table id='data' style="width:80%; margin:auto; text-align:center">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Function to populate the table with data
+        function populateTableWithData(data) {
+            const tableBody = document.querySelector('#data tbody');
+
+            // Clear existing rows
+            tableBody.innerHTML = '';
+
+            // Loop through the data and create table rows
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                Object.values(item).forEach(value => {
+                    const cell = document.createElement('td');
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Example data to populate the table (replace this with your data)
+        const exampleData = [
+            { currency: 'USD', rate: 1.2, facevalue: 10, quantity: 5, amount: 60, summ: 72 },
+            { currency: 'EUR', rate: 1.5, facevalue: 20, quantity: 3, amount: 60, summ: 90 },
+        ];
+
+        // Call the function to populate the table with data
+        populateTableWithData(exampleData);
+    </script>
+</body>
+
+</html>
