@@ -1,58 +1,61 @@
 <style>
-table, td, th {
-  border: 1px solid;
-}
+    table,
+    td,
+    th {
+        border: 1px solid;
+    }
 
-table {
-  width: 50%;
-  border-collapse: collapse;
-}
+    table {
+        width: 50%;
+        border-collapse: collapse;
+    }
 </style>
 
 <div style="width:50%; margin:auto ; text-align:center">
-<h1>Count your money</h1>
-<div style="background-color:red ; width:50%; margin:auto;">
-<h1  id="tot" style="font-size:300%; color:white ;"> </h1>
-</div>
-<table id='data' style="width:80%; margin:auto ; text-align:center">
-  <thead></thead>
-  <tbody></tbody>
-</table>
-<br>
-  <button id="printButton">Print Table</button>
-<br>
+    <h1>Count your money</h1>
+    <div style="background-color:red ; width:50%; margin:auto;">
+        <h1 id="tot" style="font-size:300%; color:white ;"> </h1>
+    </div>
+    <table id='data' style="width:80%; margin:auto ; text-align:center">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
+    <br>
+    <button id="printButton">Print Table</button>
+    <br>
 
-<br><br><br>
-<form>
- <select name="currency" id="currency">
-  <option value="Valuta">Valuta</option>
-  <option value="MDL">Leu</option>
-  <option value="EURO">EURO</option>
-  <option value="USD">USA Dollar</option>
-  <option value="UAH">Hrivna</option>
-  <option value="RON">RON</option>
-</select>
-<input id="rate" type="number" value="1" name="rate" step="0.01" min="0.1" max="100" />
- <select name="facevalue" id="facevalue">
-  <option value="add a facevalue">add a facevalue</option>
-  <option value="5">5</option>
-  <option value="10">10</option>
-  <option value="20">20</option>
-  <option value="50">50</option>
-  <option value="100">100</option>
-  <option value="200">200</option>
-  <option value="500">500</option>
-  <option value="1000">1000</option>
-</select>
-  <input id="quantity" onkeyup="amountmoney()" type="number" name="quantity"  min="1" max="10000" placeholder="quantity"/>
-  <input id="amount" type="number" name="amount"  min="1" max="100000"/>
-  <input id="summ" type="number" name="summ" min="1" max="1000000"/>
-  <button>ADD</button>
-</form>
-<div style="background-color:blue ; width:50%; margin: auto;
+    <br><br><br>
+    <form>
+        <select name="currency" id="currency">
+            <option value="Valuta">Valuta</option>
+            <option value="MDL">Leu</option>
+            <option value="EURO">EURO</option>
+            <option value="USD">USA Dollar</option>
+            <option value="UAH">Hrivna</option>
+            <option value="RON">RON</option>
+        </select>
+        <input id="rate" type="number" value="1" name="rate" step="0.01" min="0.1" max="100" />
+        <select name="facevalue" id="facevalue">
+            <option value="add a facevalue">add a facevalue</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+        </select>
+        <input id="quantity" onkeyup="amountmoney()" type="number" name="quantity" min="1" max="10000"
+            placeholder="quantity" />
+        <input id="amount" type="number" name="amount" min="1" max="100000" />
+        <input id="summ" type="number" name="summ" min="1" max="1000000" />
+        <button>ADD</button>
+    </form>
+    <div style="background-color:blue ; width:50%; margin: auto;
 ">
-<h1  id="four" style="font-size:300%; color:white ;"> </h1>
-</div>
+        <h1 id="four" style="font-size:300%; color:white ;"> </h1>
+    </div>
 </div>
 
 <script>
@@ -148,10 +151,9 @@ of.addEventListener('submit', e => {
 const printButton = document.getElementById('printButton');
 printButton.addEventListener('click', () => {
     // Create a new window or tab with the printable table
-    const printableTable = window.open('printable-table.html', '_blank');
+    const printableTable = window.open('printable-table.html',  '_blank');
     printableTable.focus();
 })
 
 
 </script>
-

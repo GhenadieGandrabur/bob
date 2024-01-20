@@ -19,7 +19,7 @@
         <input id="quantity" name="income[quantity]" value="<?= $income->quantity ?? "" ?>" placeholder="quantity" size="5" oninput="calculateSumm()">
         <input id="amount" name="income[amount]" value="<?= $income->amount ?? "" ?>" placeholder="amount" size="5">
         <input id="summ" name="income[summ]" value="<?= $income->summ ?? "" ?>" placeholder="summ" size="10">
-        <br><button type="button" onclick="addRow()" >Add Row</button>
+
         <div style="margin-top: 20px;">
             <input type="submit" name="submit" value="Save">
         </div>
@@ -27,7 +27,8 @@
 </div>
 
 <script>
-    function calculateSumm() {
+    
+        function calculateSumm() {
         // Get the values of quantity and facevalue
         var quantity = parseFloat(document.getElementById('quantity').value) || 0;
         var facevalue = parseFloat(document.getElementById('facevalue').value) || 0;
