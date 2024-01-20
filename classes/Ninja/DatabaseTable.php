@@ -78,7 +78,6 @@ class DatabaseTable {
 		$query .= ')';
 
 		$fields = $this->processDates($fields);
-
 		$this->query($query, $fields);
 	}
 

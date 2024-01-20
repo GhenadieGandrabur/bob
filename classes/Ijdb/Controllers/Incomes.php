@@ -29,14 +29,14 @@ class Incomes
             'title' => "Incomes list",
             'variables' => [
                 'totalIcomes' => $this->incomesTable->total(),
-                'incomess' => $this->incomesTable->getAll()                              
+                'incomes' => $this->incomesTable->getAll()                              
             ],
         ];
     }
 
     public function delete()
     {
-        $incomes = $this->incomesTable->findById($_POST['id']);
+        
         $this->incomesTable->delete($_POST['id']);
         header('location: /income/list');
     }
@@ -44,40 +44,34 @@ class Incomes
     public function saveEdit()
     {
         $income = $_POST['income'];       
-        $income['date'] = date('Y-m-d', time());
+        $income['created'] = date('Y-m-d', time());
         $income['id'] = 0;
-        $this->incomesTable->save($income);
-        print '<pre>'. print_r($income, true).'</pre>';
-        die;
+        $this->incomesTable->save($income); 
 
         header('location: /income/list');
     }
 
     
-        public function edit()
-{
-    if (isset($_GET['id']))
-    {                        
-        $income = $this->incomesTable->findById($_GET['id']);      
-        $currencies = $this->incomesTable->getAllCurrencies();
-            // $this->incomesTable->debug($income);
-            // $this->incomesTable->debug($currencies);         
-    } 
-    else
+    public function edit()
     {
-         empty($income); // Initialize an empty array if no incomes is found
-         $currencies = $this->incomesTable->getAllCurrencies();
-         
+        $currencies = $this->incomesTable->getAllCurrencies();
+        $facevalues = [];
+        if (isset($_GET['id']))
+        {                        
+            $income = $this->incomesTable->findById($_GET['id']);      
+            $facevalues = $this->incomesTable->getFacevaluesByIncomeId($_GET['id']);  
+        } 
+    
+            
+        return ['template' => 'incomeedit.html.php',
+            'title' => "Incomes",
+            'variables' => [                                
+                'income' => $income?? null,
+                'currencies' => $currencies ?? null,
+                'facevalues' => $facevalues
+            ],
+        ];
     }
-		
-    return ['template' => 'incomeedit.html.php',
-        'title' => "Incomes",
-        'variables' => [                                
-            'income' => $income?? null,
-            'currencies' => $currencies ?? null
-        ],
-    ];
-}
 
 
 }
