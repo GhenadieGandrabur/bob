@@ -16,7 +16,7 @@
 			<li><a href="/income/list">Incams</a></li>
 			<li><a href="/logout">Log out</a></li>
 			<?php else: ?>
-			<li style="float:right;"><a href="/login">Log in</a></li>
+				<li style="float:right;"><a href="/login">Log in</a></li>
 		</ul>
 		<?php endif; ?>
 			

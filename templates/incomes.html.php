@@ -1,5 +1,5 @@
 <div>
-<p><?=$totalIcomes?> Incomes <samp style="float:right"><a href="/income/edit">Ad an income</a></samp></p>
+<p>Incomes  . <samp ><a href="/income/edit" style="border:1px solid; padding:5px;">Add an income</a></samp><?=$totalIcomes?> </p>
 <table>
   <tr>
 <th>Id</th>

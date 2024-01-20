@@ -131,7 +131,7 @@ class DatabaseTable {
 		try {
 			if ($record[$this->primaryKey] == '') {
 				$record[$this->primaryKey] = null;
-			}
+			}			
 			$this->insert($record);
 		}
 		catch (\PDOException $e) {

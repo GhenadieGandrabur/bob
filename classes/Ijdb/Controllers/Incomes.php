@@ -44,9 +44,11 @@ class Incomes
     public function saveEdit()
     {
         $income = $_POST['income'];       
-        $income['date'] = new \DateTime();
-        
+        $income['date'] = date('Y-m-d', time());
+        $income['id'] = 0;
         $this->incomesTable->save($income);
+        print '<pre>'. print_r($income, true).'</pre>';
+        die;
 
         header('location: /income/list');
     }

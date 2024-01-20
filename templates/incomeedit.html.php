@@ -66,4 +66,11 @@
             // calculateSumm();
         }
     }
+
+    document.getElementById('currency_id').addEventListener('change', e=>{
+        const currency_id = e.target.value
+        const currency_name = e.target.querySelector(`option[value="${currency_id}"]`).innerText.trim()
+        console.log(currency_name)
+        fetch('/rate/last').then(res=>res.json()).then(json=>document.getElementById('rate').value=json[currency_name])
+    })
 </script>

@@ -47,7 +47,7 @@ class IjdbRoutes implements \Ninja\Routes {
 					'controller' => $authorController,
 					'action' => 'success'
 				]
-			],
+			],			
 			'currency/edit' => [
 				'POST' => [
 					'controller' => $currencyController,
@@ -92,6 +92,12 @@ class IjdbRoutes implements \Ninja\Routes {
 					'controller' => $rateController,
 					'action' => 'list'
 				],'login' => true
+			],
+			'rate/last' => [
+				'GET' => [
+					'controller' => $rateController,
+					'action' => 'lastRates'
+				]
 			],
 			'income/edit' => [
 				'POST' => [

@@ -69,4 +69,11 @@ class Rates
         ];
     }
 
+    public function lastRates()
+    {
+        $rates = $this->ratesTable->getLastRates();
+        print json_encode($rates?? []);
+        die;
+    }
+
 }
