@@ -19,7 +19,7 @@
         <input id="quantity" name="income[quantity]" value="<?= $income->quantity ?? "" ?>" placeholder="quantity" size="5" oninput="calculateSumm()">
         <input id="amount" name="income[amount]" value="<?= $income->amount ?? "" ?>" placeholder="amount" size="5">
         <input id="summ" name="income[summ]" value="<?= $income->summ ?? "" ?>" placeholder="summ" size="10">
-
+        <br><button type="button" onclick="addRow()" >Add Row</button>
         <div style="margin-top: 20px;">
             <input type="submit" name="submit" value="Save">
         </div>
@@ -27,8 +27,7 @@
 </div>
 
 <script>
-    
-        function calculateSumm() {
+    function calculateSumm() {
         // Get the values of quantity and facevalue
         var quantity = parseFloat(document.getElementById('quantity').value) || 0;
         var facevalue = parseFloat(document.getElementById('facevalue').value) || 0;
@@ -38,7 +37,7 @@
 
         // Update the amount input field
         document.getElementById('amount').value = amount;
-    
+
 
         // Get the values of rate and amount
         var rate = parseFloat(document.getElementById('rate').value) || 0;
@@ -49,5 +48,21 @@
 
         // Update the summ input field
         document.getElementById('summ').value = summ;
+
+        function addRow() {
+            var tableBody = document.querySelector('#incomeTable tbody');
+            var newRow = tableBody.insertRow();
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+
+            cell1.innerHTML = '<input type="number" class="quantity" oninput="calculateRowAmount(this)">';
+            cell2.innerHTML = '<input type="number" class="row-amount">';
+            cell3.innerHTML = '<input type="number" class="rate" oninput="calculateRowSumm(this)">';
+            cell4.innerHTML = '<input type="number" class="row-summ">';
+
+            // calculateSumm();
+        }
     }
 </script>

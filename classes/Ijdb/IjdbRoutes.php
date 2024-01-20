@@ -22,6 +22,7 @@ class IjdbRoutes implements \Ninja\Routes {
 		$this->incomesTable = new IncomesRepository($pdo, 'incomes', 'id');
 		$this->authorsTable = new DatabaseTable($pdo, 'author', 'id');
 		$this->authentication = new Authentication($this->authorsTable, 'email', 'password');
+		
 	}
 
 	public function getRoutes(): array {
