@@ -1,9 +1,13 @@
-<h1>Incomes</h1>
-<div style="text-align:center">
+<div style="width:60%; margin:auto;">
+    <h1>Incomes</h1>
+    
     <form action="" method="post" class="forall">
 
         <input type="hidden" name="income[id]" value="<?= $income->id ?? '' ?>">
-        <input type="date" id='date' name="income[created]" value="<?= $income->date ?? "" ?>" placeholder="date">
+        <div style="padding-bottom:10px"><input type="date" id='date' name="income[created]" value="<?= $income->date ?? "" ?>" placeholder="date"></div>
+       
+               
+        
         <?php foreach($facevalues as $facevalue):?>
         <div class="facevalue">
             <select id="currency_id" name="income[currency_id][]">

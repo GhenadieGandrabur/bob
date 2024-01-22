@@ -43,10 +43,38 @@ class Incomes
 
     public function saveEdit()
     {
-        $income = $_POST['income'];       
-        $income['created'] = date('Y-m-d', time());
-        $income['id'] = 0;
-        $this->incomesTable->save($income); 
+        $data = $_POST['income']; 
+        $incomeId = $data['id'];
+        if(empty($incomeId))
+        {
+            $created = date('Y-m-d', time());
+            $incomeId = $this->incomesTable->save([
+                'id' => null,
+                'created' => $created
+            ]);
+            $incomeId = $this->incomesTable->find('created', $created)[0]->id;          
+        }
+
+        $incomes = [];
+        for($i = 0; $i < sizeof($data['facevalue'])-1; $i++)
+        {            
+            $incomes[] = [
+                'income_id' => $incomeId,
+                'currency_id' => $data['currency_id'][$i],
+                'facevalue' => $data['facevalue'][$i],
+                'quantity' => $data['quantity'][$i],
+                'amount' => $data['amount'][$i],
+                'rate' => $data['rate'][$i],
+                'summ' => $data['summ'][$i]
+            ];
+        }
+        
+        $this->incomesTable->clearFacevaluesByIncomeId($incomeId);
+        if(count($incomes) > 0)
+        {
+            $this->incomesTable->saveFacevalues($incomes);
+        }          
+        
 
         header('location: /income/list');
     }
