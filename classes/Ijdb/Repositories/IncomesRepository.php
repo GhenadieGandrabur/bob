@@ -24,9 +24,10 @@ class IncomesRepository extends DatabaseTable{
     {
         foreach($facevalues as $facevalue)
         {
-            $this->query(sprintf("INSERT INTO income_facevalues (income_id, currency_id, facevalue, quantity,  amount, rate, summ) 
+            $query = sprintf("INSERT INTO income_facevalues (income_id, currency_id, facevalue, quantity,  amount, rate, summ) 
                 VALUES (%d, %d, %d, %d, %d, %.2f, %.2f)", $facevalue['income_id'], $facevalue['currency_id'], $facevalue['facevalue'], 
-                $facevalue['quantity'], $facevalue['amount'], $facevalue['rate'], $facevalue['summ']));
+                $facevalue['quantity'], $facevalue['amount'], $facevalue['rate'], $facevalue['summ']);                
+            $this->query($query);
         }
     }
 

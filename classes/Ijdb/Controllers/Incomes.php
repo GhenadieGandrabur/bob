@@ -56,8 +56,12 @@ class Incomes
         }
 
         $incomes = [];
-        for($i = 0; $i < sizeof($data['facevalue'])-1; $i++)
-        {            
+        for($i = 0; $i < sizeof($data['facevalue']); $i++)
+        {  
+            if(empty($data['facevalue'][$i]))
+            {
+                continue;
+            }          
             $incomes[] = [
                 'income_id' => $incomeId,
                 'currency_id' => $data['currency_id'][$i],
@@ -68,7 +72,6 @@ class Incomes
                 'summ' => $data['summ'][$i]
             ];
         }
-        
         $this->incomesTable->clearFacevaluesByIncomeId($incomeId);
         if(count($incomes) > 0)
         {
