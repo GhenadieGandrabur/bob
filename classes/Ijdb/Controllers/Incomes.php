@@ -36,23 +36,26 @@ class Incomes
 
     public function delete()
     {
-        
-        $this->incomesTable->delete($_POST['id']);
+        $incomeId = intval($_POST['id']);
+        $this->incomesTable->clearFacevaluesByIncomeId($incomeId);
+        $this->incomesTable->delete($incomeId);
         header('location: /income/list');
     }
 
     public function saveEdit()
     {
         $data = $_POST['income']; 
-        $incomeId = $data['id'];
+        $incomeId = $data['id'] ?? null;
+        $created = $data['created'] ?? date('Y-m-d', time());
+       
+        $incomeId = $this->incomesTable->save([
+            'id' => $incomeId,
+            'created' => $created,
+            'total_amount' => $data['total_amount']
+        ]);
         if(empty($incomeId))
         {
-            $created = date('Y-m-d', time());
-            $incomeId = $this->incomesTable->save([
-                'id' => null,
-                'created' => $created
-            ]);
-            $incomeId = $this->incomesTable->find('created', $created)[0]->id;          
+            $incomeId = $this->incomesTable->find('created', $created)[0]->id;
         }
 
         $incomes = [];
@@ -87,19 +90,25 @@ class Incomes
     {
         $currencies = $this->incomesTable->getAllCurrencies();
         $facevalues = [];
+        $income = null;
         if (isset($_GET['id']))
         {                        
             $income = $this->incomesTable->findById($_GET['id']);      
             $facevalues = $this->incomesTable->getFacevaluesByIncomeId($_GET['id']);  
         } 
-    
+        // $totalAmount = 0;
+        // foreach($facevalues as $facevalue)
+        // {
+        //     $totalAmount+= $facevalue->summ;
+        // }    
             
         return ['template' => 'incomeedit.html.php',
             'title' => "Incomes",
             'variables' => [                                
                 'income' => $income?? null,
                 'currencies' => $currencies ?? null,
-                'facevalues' => $facevalues
+                'facevalues' => $facevalues,
+                'totalAmount' => $income->total_amount?? null
             ],
         ];
     }

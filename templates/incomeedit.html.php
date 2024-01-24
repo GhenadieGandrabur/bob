@@ -4,8 +4,8 @@
     <form action="/income/edit" method="post" class="forall">
 
         <input type="hidden" name="income[id]" value="<?= $income->id ?? '' ?>">
-        <div style="padding-bottom:10px"><input type="date" id='date' name="income[created]" value="<?= $income->created ?? "" ?>" placeholder="date"></div>
-       
+        <div style="padding-bottom:10px"><input type="date" id='date' name="income[created]" 
+            value="<?=date('Y-m-d', ($income->created ?? false) ? strtotime($income->created) : time())?>" readonly></div>      
                
         
         <?php foreach($facevalues as $facevalue):?>
@@ -43,6 +43,9 @@
             <input class="amount" type="text" name="income[amount][]"  placeholder="amount" size="5">
             <input class="summ" type="text" name="income[summ][]"  placeholder="summ" size="10">
         </div>
+        <div class="total" style="text-align: right;">
+            <input type="text" id="totalamount" name="income[total_amount]" placeholder="Total amount" value="<?=$totalAmount ?? '' ?>">
+        </div>
         <div style="margin-top: 20px;">
             <input type="submit" name="submit" value="Save">
         </div>
@@ -57,11 +60,15 @@
         let facevalue = parseFloat(el.parentNode.querySelector('.facevalue').value) || 0;
         let amount = quantity * facevalue;
         el.parentNode.querySelector('.amount').value = amount;
-        let rate = parseFloat(el.parentNode.querySelector('.rate').value) || 0;
-        // amount = parseFloat(el.parentNode.querySelector('.amount').value) || 0;
-      
-        //let summ = rate * amount;     
-        el.parentNode.querySelector('.summ').value = rate*amount;        
+        let rate = parseFloat(el.parentNode.querySelector('.rate').value) || 0;        
+        el.parentNode.querySelector('.summ').value = rate*amount; 
+        totalAmountRecalc()
+    }
+    function totalAmountRecalc()
+    {
+        let totalAmount = 0
+        document.querySelectorAll('.summ').forEach(summ=> totalAmount+= parseFloat(summ.value) || 0)
+        document.getElementById('totalamount').value = totalAmount.toFixed(2)
     }
 
     document.querySelectorAll('.currency').forEach(currency=>{
@@ -77,6 +84,7 @@
         btn.addEventListener("click", e=>{
             e.preventDefault()
             e.target.parentNode.remove()
+            totalAmountRecalc()
         })
     })
 </script>
