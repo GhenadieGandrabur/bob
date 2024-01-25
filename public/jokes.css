@@ -171,10 +171,21 @@ input[type="password"] {
  table,
  td,
  th {
-   border: 1px solid;
+   border:none;
+ }
+
+ th{
+  text-align: left;
+  background-color: #ccc;
  }
 
  table {
    width: 100%;
    border-collapse: collapse;
  }
+
+ table tr:last-child {
+  border-top: 3px solid;
+  font-weight: bold; 
+  color: blue;
+}
