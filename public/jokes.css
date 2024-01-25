@@ -168,24 +168,64 @@ input[type="password"] {
    display: table-cell;
    padding: 1em;
  }
- table,
+
+ .incometable  td, th {
+   padding: 2px 10px;
+   border:none;   
+ }
+
+ .incometable 
+ tr{
+   border-left:1px solid; 
+   border-right:1px solid; 
+ }
+
+ table
  td,
  th {
-   border:none;
+   border:1px solid;
+   padding: 2px 10px;
  }
 
  th{
+  background-color:#dddddd;
+  padding: 3px 10px;
   text-align: left;
-  background-color: #ccc;
  }
 
- table {
+ .incometable th{
+  text-align: left;
+  background-color: #ccc;
+  padding: 2px 10px;
+ }
+
+ .incometable{
+   width: 100%;
+   border-collapse: collapse;
+ }
+ table{
    width: 100%;
    border-collapse: collapse;
  }
 
- table tr:last-child {
-  border-top: 3px solid;
-  font-weight: bold; 
-  color: blue;
+ .incometable tr:last-child>td { 
+  border: none;
+  border-top: 1px solid;
+  font-weight: bold;
+  padding:10px;   
+}
+ .incometable tr:last-child { 
+  border: none;   
+}
+
+tr:hover{
+  background-color: yellow;
+  
+}
+
+.button{
+  padding:5px 10px;  
+  background-color:red; 
+  color:white;
+  border: none;
 }
