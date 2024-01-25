@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2024 at 08:17 PM
+-- Generation Time: Jan 25, 2024 at 10:32 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -84,15 +84,17 @@ INSERT INTO `currencies` (`id`, `name`) VALUES
 
 CREATE TABLE `income` (
   `id` int(11) NOT NULL,
-  `created` datetime NOT NULL
+  `created` datetime NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `income`
 --
 
-INSERT INTO `income` (`id`, `created`) VALUES
-(1, '2024-01-20 16:50:40');
+INSERT INTO `income` (`id`, `created`, `total_amount`) VALUES
+(4, '2024-01-23 00:00:00', '7200.00'),
+(6, '2024-01-25 00:00:00', '13800.00');
 
 -- --------------------------------------------------------
 
@@ -116,11 +118,14 @@ CREATE TABLE `income_facevalues` (
 --
 
 INSERT INTO `income_facevalues` (`id`, `income_id`, `currency_id`, `facevalue`, `quantity`, `amount`, `rate`, `summ`) VALUES
-(14, 1, 1, 100, 100, 55, '20.00', '1000.00'),
-(31, 1, 2, 100, 1, 100, '19.00', '1900.00'),
-(32, 1, 2, 100, 1, 100, '19.00', '1900.00'),
-(33, 1, 2, 100, 1, 100, '19.00', '1900.00'),
-(34, 1, 30, 100, 100, 10000, '0.48', '4800.00');
+(127, 4, 1, 200, 36, 7200, '1.00', '7200.00'),
+(194, 6, 2, 20, 22, 440, '20.00', '8800.00'),
+(195, 6, 2, 10, 1, 10, '20.00', '200.00'),
+(196, 6, 2, 5, 1, 5, '20.00', '100.00'),
+(197, 6, 1, 500, 3, 1500, '1.00', '1500.00'),
+(198, 6, 1, 200, 14, 2800, '1.00', '2800.00'),
+(199, 6, 1, 100, 2, 200, '1.00', '200.00'),
+(200, 6, 1, 50, 4, 200, '1.00', '200.00');
 
 -- --------------------------------------------------------
 
@@ -132,25 +137,20 @@ CREATE TABLE `rates` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
   `currency_id` int(10) NOT NULL,
-  `rate` decimal(10,2) NOT NULL
+  `rate` decimal(10,2) NOT NULL,
+  `new_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rates`
 --
 
-INSERT INTO `rates` (`id`, `date`, `currency_id`, `rate`) VALUES
-(1, '2023-07-31', 3, '18.00'),
-(13, '2023-07-31', 2, '20.00'),
-(14, '2023-08-04', 3, '1.00'),
-(15, '2023-08-01', 2, '19.54'),
-(16, '2023-08-03', 3, '17.78'),
-(17, '2023-08-05', 2, '22.00'),
-(19, '2023-08-19', 2, '19.00'),
-(20, '2023-08-26', 30, '60.00'),
-(22, '2023-08-28', 31, '3.90'),
-(23, '2023-08-28', 30, '0.48'),
-(27, '2023-08-30', 3, '18.01');
+INSERT INTO `rates` (`id`, `date`, `currency_id`, `rate`, `new_id`) VALUES
+(1, '2023-07-31', 3, '18.00', NULL),
+(13, '2023-07-31', 2, '20.00', NULL),
+(22, '2023-08-28', 31, '3.90', NULL),
+(23, '2023-08-28', 30, '0.48', NULL),
+(28, '2024-01-25', 1, '1.00', NULL);
 
 --
 -- Indexes for dumped tables
@@ -210,19 +210,19 @@ ALTER TABLE `currencies`
 -- AUTO_INCREMENT for table `income`
 --
 ALTER TABLE `income`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `income_facevalues`
 --
 ALTER TABLE `income_facevalues`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT for table `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
