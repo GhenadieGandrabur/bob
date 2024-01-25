@@ -1,5 +1,14 @@
 <div style="width:800px; margin:auto;">
   <h2>Incomes <span style="font-size:10px;">(<?=$totalIcomes?>) </span></h2>
+  <form action="/income/list" class="filterreport" method="GET">
+            <input type="hidden" name="start" value="<?=$_GET['start']??""?>">
+            <input type="hidden" name="finish" value="<?=$_GET['finish']??""?>">
+            <input type="hidden" name="pickerLabel" value="<?=$_GET['pickerLabel']??""?>">
+            <span id="daterange">
+                <i class="fa fa-calendar"></i>&nbsp;
+                <span></span> <i class="fa fa-caret-down"></i>
+            </span>      
+        </form>
   <br>
   <p><a href="/income/edit" class="linkbutton">Add an income</a></p>
   <table>
@@ -23,5 +32,11 @@
     </td>
   </tr>  
   <?php endforeach; ?>
+  <tr>
+    <td colspan="2"></td>
+    <td><?=$totalAmount?></td>
+    <td colspan="2"></td>
+  </tr>
   </table>
 </div>
+<script src="/js/calendar.js"></script>

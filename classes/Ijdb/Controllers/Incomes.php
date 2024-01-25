@@ -11,25 +11,32 @@ use \Ninja\DatabaseTable;
 class Incomes
 {  
     private $currenciesTable;
-   // private $ratesTable;
     private $incomesTable;
 
 
     public function __construct(IncomesRepository $incomesTable, DatabaseTable $currenciesTable)
-    {
-        //$this->ratesTable = $ratesTable;        
+    {   
         $this->currenciesTable = $currenciesTable;
         $this->incomesTable = $incomesTable;
     }
 
   
 
-    function list() {         
+    function list() {    
+        $incomes = $this->incomesTable->getAll();
+        $totalSum = 0;
+        foreach($incomes as $income)
+        {
+            $totalSum += $income['total_amount'];
+        }
+        
+
         return ['template' => 'incomes.html.php',
             'title' => "Incomes list",
             'variables' => [
                 'totalIcomes' => $this->incomesTable->total(),
-                'incomes' => $this->incomesTable->getAll()                              
+                'incomes' => $incomes,
+                'totalAmount' => $totalSum                            
             ],
         ];
     }
