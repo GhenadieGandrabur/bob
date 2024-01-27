@@ -7,6 +7,7 @@ namespace Ijdb\Controllers;
 use Ijdb\Repositories\IncomesRepository;
 use \Ninja\Authentication;
 use \Ninja\DatabaseTable;
+use tidy;
 
 class Incomes
 {  
@@ -22,8 +23,10 @@ class Incomes
 
   
 
-    function list() {    
-        $incomes = $this->incomesTable->getAll();
+    function list() {   
+        $start  = $_GET['start'] ?? date('Y-m-d', strtotime('-1 month'));
+        $finish  = $_GET['finish'] ?? date('Y-m-d', time());
+        $incomes = $this->incomesTable->getAllFaceValue($start, $finish);
         $totalSum = 0;
         foreach($incomes as $income)
         {
@@ -68,7 +71,7 @@ class Incomes
         $incomes = [];
         for($i = 0; $i < sizeof($data['facevalue']); $i++)
         {  
-            if(empty($data['facevalue'][$i]))
+            if(empty(empty($data['currency_id'][$i]) || empty($data['rate'][$i]) || $data['facevalue'][$i]) || empty($data['quantity'][$i]) || empty($data['amount'][$i]) || empty($data['summ'][$i]))
             {
                 continue;
             }          

@@ -6,7 +6,7 @@ $(function () {
     start = moment($('[name="start"]').val());
     end = moment($('[name="finish"]').val());
   }
-  let pickerLabel = $('[name="pickerLabel"]').val().length > 0 ? $('[name="pickerLabel"]').val() :'This Year'
+  let pickerLabel = $('[name="pickerLabel"]').val().length > 0 ? $('[name="pickerLabel"]').val() :'This Month'
   const ranges = {
     'All Time': [moment('1970-01-01'), moment().startOf('day')],
     'Today': [moment().startOf('day'), moment().add(1,'day').endOf('day')],

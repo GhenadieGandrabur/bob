@@ -43,6 +43,6 @@
     <td colspan="2"></td>
   </tr>
   </table>
-  <h4 style="text-align:right"><?=$totalAmount/4?></h4>
+
 </div>
 <script src="/js/calendar.js"></script>

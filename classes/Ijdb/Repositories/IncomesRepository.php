@@ -20,6 +20,11 @@ class IncomesRepository extends DatabaseTable{
         return $this->query("SELECT * FROM income_facevalues WHERE income_id = $income_id")->fetchAll(\PDO::FETCH_OBJ);
     }    
 
+    public function getAllFaceValue($start, $finish)
+    {
+        return $this->query("SELECT * FROM income WHERE created BETWEEN '$start' AND '$finish' ")->fetchAll(\PDO::FETCH_ASSOC);
+    }    
+
     public function saveFacevalues($facevalues)
     {
         foreach($facevalues as $facevalue)
