@@ -36,6 +36,40 @@ $(function () {
   }
 
   $('#daterange').daterangepicker({
+    locale: {
+      format: 'YYYY-MM-DD',
+      separator: " - ",
+      applyLabel: "Aplicar",
+      cancelLabel: "Cancelar",
+      fromLabel: "Desde",
+      toLabel: "Hasta",
+      customRangeLabel: "Personalizado",
+      weekLabel: "W",
+      daysOfWeek: [
+          "Dom",
+          "Lun",
+          "Mar",
+          "Mie",
+          "Jue",
+          "Vie",
+          "Sab"
+      ],
+      monthNames: [
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre"
+      ],
+      firstDay: 1
+    },
     startDate: start,
     endDate: end,
     ranges: ranges
