@@ -1,6 +1,6 @@
 <div style="width:800px; margin:auto;">
-  <h2>Incomes <span style="font-size:14px;">(<?=$totalIcomes?>) </span><span style="font-size:14px;margin-left:20px;">  
-  <?=$totalAmount?></span><span style="font-size:14px;margin-left:20px;">: 4 = </span> <span style="font-size:14px;margin-left:20px;"><?=$totalAmount/4?></span> </h2>
+  <h2>Incomes <span style="font-size:14px;">(<?=number_format($totalAmount, 0, ',', ' ')?> ) </span><span style="font-size:14px;margin-left:20px;">  
+  <?=number_format($totalAmount, 0, ',', ' ')?> </span><span style="font-size:14px;margin-left:20px;">: 4 = </span> <span style="font-size:14px;margin-left:20px;"><?=number_format($totalAmount/4, 0, ',', ' ')?> </span> </h2>
     <div style="display:flex; align-items: center; justify-content: space-between;">
       <form action="/income/list" class="filterreport" method="GET" style="padding: 5px 20px; background:orange;">
                 <input type="hidden" name="start" value="<?=$_GET['start']??""?>">
@@ -38,8 +38,8 @@
   <?php endforeach; ?>
   <tr>   
     <td colspan="2"></td>
-    <td><?=$totalAmount?></td>
-    <td><?=$totalAmount/4?></td>    
+    <td><?=number_format($totalAmount, 0, ',', ' ')?> </td>
+    <td><?=number_format($totalAmount/4, 0, ',', ' ')?></td>    
     <td colspan="2"></td>
   </tr>
   </table>
