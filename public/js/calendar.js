@@ -32,41 +32,40 @@ $(function () {
     $('[name="start"]').val(start.format('YYYY-MM-DD'))
     $('[name="finish"]').val(end.format('YYYY-MM-DD'))
     $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-
   }
 
   $('#daterange').daterangepicker({
     locale: {
       format: 'YYYY-MM-DD',
       separator: " - ",
-      applyLabel: "Aplicar",
-      cancelLabel: "Cancelar",
-      fromLabel: "Desde",
-      toLabel: "Hasta",
-      customRangeLabel: "Personalizado",
+      applyLabel: "Apply",
+      cancelLabel: "Cancel",
+      fromLabel: "From",
+      toLabel: "Until",
+      customRangeLabel: "Custom",
       weekLabel: "W",
       daysOfWeek: [
-          "Dom",
-          "Lun",
-          "Mar",
-          "Mie",
-          "Jue",
-          "Vie",
-          "Sab"
+          "Sunday",
+          "Monday",
+          "Thusday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
       ],
       monthNames: [
-          "Enero",
-          "Febrero",
-          "Marzo",
-          "Abril",
-          "Mayo",
-          "Junio",
-          "Julio",
-          "Agosto",
-          "Septiembre",
-          "Octubre",
-          "Noviembre",
-          "Diciembre"
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
       ],
       firstDay: 1
     },

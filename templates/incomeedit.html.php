@@ -8,9 +8,22 @@
             value="<?=date('Y-m-d', ($income->created ?? false) ? strtotime($income->created) : time())?>" readonly></div>      
                
         <div id="facevaluewrapper">
+            <table>
+                <tr>
+                    <th>currency</th>
+                    <th>rate</th>
+                    <th>facevalue</th>
+                    <th>quantity</th>
+                    <th>amount</th>
+                    <th>summ</th>
+                    <th>X</th>
+                </tr>
+
         <?php foreach($facevalues as $facevalue):?>
-            <div class="facevalue">
-                <select class="currency" name="income[currency_id][]" >
+         
+            <div class="facevalue" style="background-color:red;">
+                <tr>
+               <td> <select class="currency" name="income[currency_id][]" >
                     <option value="">Select Currency</option>
                     <?php foreach ($currencies as $currency) : ?>
                         <option value="<?= $currency['id'] ?>" <?php if ($facevalue->currency_id == $currency['id']) : ?> selected <?php endif; ?>>
@@ -18,15 +31,30 @@
                         </option>
                     <?php endforeach; ?>
                 </select>
+                </td>
+                <td>
                 <input class="rate" type="text"  name="income[rate][]" value="<?= $facevalue->rate ?? "" ?>" placeholder="rate" size="5" readonly>
+                </td>
+                <td>
                 <input class="facevalue" type="text"  name="income[facevalue][]" value="<?= $facevalue->facevalue ?? "" ?>" placeholder="facevalue" size="5" oninput="calculateSumm(this)">
+                </td>
+                <td>
                 <input class="quantity" type="text" name="income[quantity][]" value="<?= $facevalue->quantity ?? "" ?>" placeholder="quantity" size="5" oninput="calculateSumm(this)">
+                </td>
+                <td>
                 <input class="amount" type="text" name="income[amount][]" value="<?= $facevalue->amount ?? "" ?>" placeholder="amount" size="5" readonly>
+                </td>
+                <td>
                 <input class="summ" type="text" name="income[summ][]" value="<?= $facevalue->summ ?? "" ?>" placeholder="summ" size="10" readonly>
+                </td>
+                <td>
                 <a href="#" class="deleterow" >❌</a>
+                </td>
+                </tr>
             </div>
-            <?php endforeach;?>
             
+            <?php endforeach;?>
+            </table>
         </div>
         <div class="total" style="margin-left:562px;">           
             <input type="text" id="totalamount" name="income[total_amount]" placeholder="Total amount" value="<?=$totalAmount ?? '' ?>"  style="font-weight:bold; text-align:right;">            
@@ -81,7 +109,7 @@
    
 
     const faceValueRow = `
-            <select class="currency" name="income[currency_id][]">
+            <select class="currency" name="income[currency_id][]" >
                 <option value="">Select Currency</option>
                 <?php foreach ($currencies as $currency) : ?>
                     <option value="<?= $currency['id'] ?>" ><?= $currency['name'] ?></option>
