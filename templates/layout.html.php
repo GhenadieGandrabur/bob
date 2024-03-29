@@ -14,8 +14,8 @@
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 		<link rel="stylesheet" type="text/css" href="https://css.cubit.md/css/buttons.css" />
-        <link rel="stylesheet" type="text/css" href="https://css.cubit.md/css/form.css" />
-        <link rel="stylesheet" type="text/css" href="https://css.cubit.md/css/shortcast.css" />
+      <link rel="stylesheet" type="text/css" href="https://css.cubit.md/css/form.css" />
+      <link rel="stylesheet" type="text/css" href="https://css.cubit.md/css/shortcast.css" />
 
 		
 
