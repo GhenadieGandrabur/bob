@@ -1,8 +1,8 @@
 <div style="width: 100%; margin:auto;">
 <div class="f fjb">
-    <h1 class="f1">Incomes </h1><h1 style="background-color:red; color:white"> <?= number_format($totalAmount / 4, 0, ',', ' ') ?></h1>
+    <h1 class="f1">Incomes </h1><h1 style=" color:red" id="totalsumm"><?=$totalAmount?></h1><h1 style="background-color:red; color:white" id="four"> <?= number_format($totalAmount / 4, 0, ',', ' ') ?></h1>
 </div>
-
+<div>
     <form action="/income/edit" method="post" class="forall">
 
         <input type="hidden" name="income[id]" value="<?= $income->id ?? '' ?>">
@@ -13,8 +13,7 @@
         <div id="facevaluewrapper">
             <?php foreach ($facevalues as $facevalue) : ?>
                 <div class="facevalue f">
-                    <div><select class="currency" name="income[currency_id][]">
-                        <option value="">Select Currency</option>
+                    <div><select class="currency" name="income[currency_id][]">                      
                         <?php foreach ($currencies as $currency) : ?>
                             <option value="<?= $currency['id'] ?>" <?php if ($facevalue->currency_id == $currency['id']) : ?> selected <?php endif; ?>>
                                 <?= $currency['name'] ?>
@@ -27,12 +26,11 @@
                     <div><input class="quantity" type="text" name="income[quantity][]" value="<?= $facevalue->quantity ?? "" ?>" placeholder="quantity" oninput="calculateSumm(this)"></div>
                     <div><input class="amount" type="text" name="income[amount][]" value="<?= $facevalue->amount ?? "" ?>" placeholder="amount" readonly></div>
                     <div><input class="summ" type="text" name="income[summ][]" value="<?= $facevalue->summ ?? "" ?>" placeholder="summ" readonly></div>
-                    <div class="b1 p05">
+                    <div class=" p05">
                         <a href="#" class="deleterow">❌</a>
                     </div>
                 </div>
             <?php endforeach; ?>
-
         </div>
         <div class="f fjb mt1">
             <div class="linkbuttonorange" id="addfacevalue" >
@@ -49,6 +47,7 @@
             <input type="submit" name="submit" value=" Save" class="butonsubmit">
         </div>
     </form>
+    </div>
 </div>
 
 <script>
@@ -65,11 +64,12 @@
 
     function totalAmountRecalc() {
         let totalAmount = 0
+        let totalsumm = 0
         document.querySelectorAll('.summ').forEach(summ => totalAmount += parseFloat(summ.value) || 0)
         document.getElementById('totalamount').value = totalAmount.toFixed(0)
+        document.getElementById('totalsumm').innerText  = totalAmount.toFixed(0)
         let four = (totalAmount / 4).toFixed(0);
         document.getElementById('four').innerText = four;
-
     }
     document.addEventListener('change', e => {
         if (e.target.classList.contains('currency')) {
@@ -92,19 +92,18 @@
     })
 
 
-    const faceValueRow = `
-            <select class="currency" name="income[currency_id][]">
-                <option value="">Select Currency</option>
+    const faceValueRow = `               
+            <select class="currency" name="income[currency_id][]">                
                 <?php foreach ($currencies as $currency) : ?>
-                    <option value="<?= $currency['id'] ?>" ><?= $currency['name'] ?></option>
+                    <option value="<?= $currency['id'] ?>" <?= $currency['id'] == 1 ? 'selected' : '' ?>><?= $currency['name'] ?></option>
                 <?php endforeach; ?>        
             </select>
-            <input class="rate" type="text" name="income[rate][]" placeholder="rate"  readonly="">
+            <input class="rate" type="text" name="income[rate][]" placeholder="rate"  readonly="" value="1.00">
             <input class="facevalue" type="text" name="income[facevalue][]" placeholder="facevalue"  oninput="calculateSumm(this)">
             <input class="quantity" type="text" name="income[quantity][]" placeholder="quantity"  oninput="calculateSumm(this)" autocomplete="off">
             <input class="amount" type="text" name="income[amount][]" placeholder="amount"  readonly="">
             <input class="summ" type="text" name="income[summ][]" placeholder="summ" size="10" readonly="">
-            <a href="#" class="deleterow" >❌</a>
+            <a href="#" class="deleterow" >❌</a>            
         `
     document.getElementById('addfacevalue').addEventListener('click', e => {
         e.preventDefault()
@@ -113,5 +112,6 @@
         div.setAttribute('class', 'facevalue')
         div.innerHTML = faceValueRow
         wrapper.append(div)
+        div.querySelector('.facevalue').focus();
     })
 </script>
