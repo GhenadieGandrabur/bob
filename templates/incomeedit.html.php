@@ -51,15 +51,14 @@
 </div>
 
 <script>
-    function calculateSumm(el) {
+   function calculateSumm(el) {
         let quantity = parseFloat(el.parentNode.querySelector('.quantity').value) || 0;
-        let facevalue = parseFloat(el.parentNode.querySelector('.facevalue').value) || 0;
+        let facevalue = parseFloat(el.parentNode.querySelector('.facevalue').value) || 0; // Значение из select
         let amount = quantity * facevalue;
         el.parentNode.querySelector('.amount').value = amount;
         let rate = parseFloat(el.parentNode.querySelector('.rate').value) || 0;
-        console.log(rate, quantity, facevalue, amount, rate * amount)
         el.parentNode.querySelector('.summ').value = rate * amount;
-        totalAmountRecalc()
+        totalAmountRecalc();
     }
 
     function totalAmountRecalc() {
@@ -98,8 +97,17 @@
                     <option value="<?= $currency['id'] ?>" <?= $currency['id'] == 1 ? 'selected' : '' ?>><?= $currency['name'] ?></option>
                 <?php endforeach; ?>        
             </select>
-            <input class="rate" type="text" name="income[rate][]" placeholder="rate"  readonly="" value="1.00">
-            <input class="facevalue" type="text" name="income[facevalue][]" placeholder="facevalue"  oninput="calculateSumm(this)">
+            <input class="rate" type="text" name="income[rate][]" placeholder="rate"  readonly="" value="1.00">        
+            <select class="facevalue" name="income[facevalue][]">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+            </select>
             <input class="quantity" type="text" name="income[quantity][]" placeholder="quantity"  oninput="calculateSumm(this)" autocomplete="off">
             <input class="amount" type="text" name="income[amount][]" placeholder="amount"  readonly="">
             <input class="summ" type="text" name="income[summ][]" placeholder="summ" size="10" readonly="">
@@ -113,5 +121,17 @@
         div.innerHTML = faceValueRow
         wrapper.append(div)
         div.querySelector('.facevalue').focus();
+        
+        const newFaceValueSelect = div.querySelector('.facevalue');
+        newFaceValueSelect.addEventListener('change', () => {       
+        newFaceValueSelect.parentNode.querySelector('.quantity').focus();
     })
+    })
+
+    document.querySelectorAll('.facevalue').forEach(select => {
+    select.addEventListener('change', () => {     
+        select.parentNode.querySelector('.quantity').focus();
+    });
+});
+
 </script>
