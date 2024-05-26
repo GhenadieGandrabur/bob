@@ -26,7 +26,7 @@
                 </thead>
                 <tbody id="facevaluewrapper">
                     <?php foreach ($facevalues as $facevalue) : ?>
-                        <tr class="facevalue f">
+                        <tr class="facevalue ">
                             <td>
                                 <select class="currency" name="income[currency_id][]">
                                     <?php foreach ($currencies as $currency) : ?>
