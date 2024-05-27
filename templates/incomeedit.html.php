@@ -21,7 +21,7 @@
                         <th>QTY</th>
                         <th>Currency amount</th>
                         <th>Lei amount</th>
-                        <th>Action</th>
+                        <!-- <th>Action</th> -->
                     </tr>
                 </thead>
                 <tbody id="facevaluewrapper">
@@ -52,7 +52,7 @@
                             <td><input class="quantity" type="text" name="income[quantity][]" value="<?= $facevalue->quantity ?? "" ?>" placeholder="quantity" oninput="calculateSumm(this)"></td>
                             <td><input class="amount" type="text" name="income[amount][]" value="<?= $facevalue->amount ?? "" ?>" placeholder="amount" readonly></td>
                             <td><input class="summ" type="text" name="income[summ][]" value="<?= number_format($facevalue->summ, 0, ',', ' ') ?>" placeholder="summ" readonly></td>
-                            <td><a href="#" class="deleterow">❌</a></td>
+                         
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -74,8 +74,43 @@
     </div>
 </div>
 
+<div class="context-menu" id="context-menu">
+        <ul>
+            <li id="delete-row">Delete Row</li>
+        </ul>
+    </div>
+
 <script>
-function calculateSumm(el) {
+     document.addEventListener('DOMContentLoaded', (event) => {
+            let contextMenu = document.getElementById('context-menu');
+            let targetRow = null;
+
+            document.getElementById('facevaluewrapper').addEventListener('contextmenu', (e) => {
+                if (e.target.closest('tr')) {
+                    e.preventDefault();
+                    targetRow = e.target.closest('tr');
+                    contextMenu.style.top = `${e.clientY}px`;
+                    contextMenu.style.left = `${e.clientX}px`;
+                    contextMenu.style.display = 'block';
+                }
+            });
+
+            document.getElementById('delete-row').addEventListener('click', () => {
+                if (targetRow) {
+                    targetRow.remove();
+                    contextMenu.style.display = 'none';
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (e.button !== 2) {
+                    contextMenu.style.display = 'none';
+                }
+            });
+        });
+
+function calculateSumm(el) 
+{
     let row = el.closest('tr');
     let quantity = parseFloat(row.querySelector('.quantity').value) || 0;
     let facevalue = parseFloat(row.querySelector('.facevalue').value) || 0;
@@ -138,7 +173,7 @@ const faceValueRow = `
         <td><input class="quantity" type="text" name="income[quantity][]" placeholder="quantity" oninput="calculateSumm(this)" autocomplete="off"></td>
         <td><input class="amount" type="text" name="income[amount][]" placeholder="amount" readonly=""></td>
         <td><input class="summ" type="text" name="income[summ][]" placeholder="summ" readonly=""></td>
-        <td><a href="#" class="deleterow">❌</a></td>
+        
     </tr>
 `;
 
@@ -152,26 +187,46 @@ document.getElementById('addfacevalue').addEventListener('click', e => {
 </script>
 
 <style>
+.context-menu {
+display: none;
+position: absolute;
+z-index: 1000;
+background-color: white;
+border: 1px solid #ccc;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.context-menu ul {
+list-style: none;
+padding: 5px 0;
+margin: 0;
+}
+.context-menu ul li {
+padding: 8px 12px;
+cursor: pointer;
+}
+.context-menu ul li:hover {
+background-color: #eee;
+}
 table, td, th {  
-  border: 1px solid #999;
-  text-align: left;
+border: 1px solid #999;
+text-align: left;
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
+border-collapse: collapse;
+width: 100%;
 }
 
 th {
-  padding: 10px;
-  background-color: #f2f2f2;
-  color: #111;
+padding: 10px;
+background-color: #f2f2f2;
+color: #111;
 }
 
 input, select {
-  width: 100%;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
+width: 100%;
+box-sizing: border-box;
+outline: none;
+border: none;
 }
 </style>
