@@ -6,7 +6,7 @@
     </div>
 
     <div>
-        <form action="/income/saveEdit" method="post" class="forall">
+        <form action="/income/edit" method="post" class="forall">
             <input type="hidden" name="income[id]" value="<?= $income->id ?? '' ?>">
             <div style="padding-bottom:10px">
                 <input type="date" id='date' name="income[created]" value="<?= date('Y-m-d', ($income->created ?? false) ? strtotime($income->created) : time()) ?>" readonly style="padding:8px; border:none;">
