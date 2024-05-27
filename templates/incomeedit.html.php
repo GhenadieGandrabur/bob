@@ -1,7 +1,7 @@
 <div style="width: 100%; margin:auto;">
     <div class="f fjb">
         <h1 class="f1">Incomes</h1>
-        <h1 style="color:red" id="totalsumm"><?= $totalAmount ?></h1>
+        <h1 style="color:red" id="totalsumm"><?= number_format($totalAmount, 0, ',', ' ') ?></h1>
         <h1 style="background-color:red; color:white" id="four"><?= number_format($totalAmount / 4, 0, ',', ' ') ?></h1>
     </div>
 
@@ -51,7 +51,7 @@
                             </td>
                             <td><input class="quantity" type="text" name="income[quantity][]" value="<?= $facevalue->quantity ?? "" ?>" placeholder="quantity" oninput="calculateSumm(this)"></td>
                             <td><input class="amount" type="text" name="income[amount][]" value="<?= $facevalue->amount ?? "" ?>" placeholder="amount" readonly></td>
-                            <td><input class="summ" type="text" name="income[summ][]" value="<?= $facevalue->summ ?? "" ?>" placeholder="summ" readonly></td>
+                            <td><input class="summ" type="text" name="income[summ][]" value="<?= number_format($facevalue->summ, 0, ',', ' ') ?>" placeholder="summ" readonly></td>
                             <td><a href="#" class="deleterow">❌</a></td>
                         </tr>
                     <?php endforeach; ?>
@@ -62,7 +62,7 @@
                 <div class="linkbuttonorange" id="addfacevalue">Add a row</div>
                 <div class="f fend fc fg1">
                     <div style="flex-grow: 1; display: flex; justify-content: flex-end;">
-                        <input type="text" id="totalamount" name="income[total_amount]" value="<?= $totalAmount ?? '' ?>" class="nb fs20">
+                        <input type="text" id="totalamount" name="income[total_amount]" value="<?= number_format($totalAmount, 0, ',', ' ') ?>" class="nb fs20">
                     </div>
                 </div>
             </div>
