@@ -1,195 +1,48 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, Sans-serif;
-}
-
-a{
- text-decoration: none;
-font-size: 14px;
-}
-
-h1 {
-  font-weight: normal;
-  padding: 10px;
-  color: green;
-  
-  
-}
-
-nav {
-  background-color: #111;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-}
-
-nav a:hover {
-  color: yellow;
-}
-
-nav ul {
-  display: table;
-  width:auto;
-  margin:10px;
-}
-
-nav li {
-  display: table-cell;
-  text-align: center;
-  padding: 10px 20px;
-}
-
- main {
-  /* overflow: auto; */
-  min-height: 30vh;
-  /*background-color: #f7f7f7;*/
-  width: 90%;
-  margin: auto;
-  /* box-shadow: -1000px 0 0 #f7f7f7, 1000px 0 0 #f7f7f7; */
-  padding-top: 20px;
-} 
-
-footer {
-  padding: 1em;
-  background-color: #FFC9A7;
-  font-size: 0.8em;
-}
-
-p {
-  margin-bottom: 1em;
-}
-
-body {
-  font-size: 1.2em;
-  font-family: arial, helvetica, sans-serif
-}
-.incomeedit{float: left; overflow: hidden;}
-
-.login form { width: 300px;  margin: 0 auto; }
-.login label{ margin-bottom: 5px;}
-.login input[type="text"],
-input[type="email"],
-input[type="password"] {
- width: 100%;
- padding: 10px;
- border: 1px solid #ccc;
- border-radius: 4px;
- margin-bottom: 10px;
-}
-.login input[type="submit"] {
- width: 100%;
- padding: 10px;
- background-color: #69c;
- color: #fff;
- border: none;
- border-radius: 4px;
- cursor: pointer;
-}
-.login input[type="submit"]:hover {
- background-color: #58a;
-}
-
-
-.incomeedit select{padding: 0;}
-/* .forall input, label, select, textarea {   width:100px;    margin-bottom: 1px;    padding: 3px;  } */
-
-.forall label { clear: left; padding: 0;  margin: 0;}
-
-
-/* .forall input[type="submit"] {overflow: hidden;   margin: 10px;   width: auto;   padding:5px 10px;   clear: both;   font-size: 1em; border:none;} */
-
-
-
-.errors {
-  padding: 1em;
-  border: 1px solid red;
-  background-color: lightyellow;
-  color: red;
-  margin-bottom: 1em;
-  overflow: auto;
-}
-
-.errors ul {
-  margin-left: 1em;
-}
-
-form p {
-  clear: both;
-}
-
-
-
-
-
-.jokelist {
-  display: table;
-}
-
-.categories {
-  display: table-cell;
-  width: 20%;
-  background-color: #333;
-  padding: 1em;
-  list-style-type: none;
-}
-
-.categories a {
-  color: white;
-  text-decoration: none;
-}
-
-.categories li {
-  margin-bottom: 1em;
-}
-.incometable{
-  width: 100%;
+table, th, td {
+  border: 1px solid;
   border-collapse: collapse;
 }
-.incometable th{
- border: 1px solid;
- text-align: left;
- background-color: #ccc;
- padding: 0 10px;
-}
-.incometable td{
- border: 1px solid;
- text-align: left;
 
- padding: 0 10px;
+nav ul{
+border-bottom: 1px solid;
+ padding:  5px ;
 }
-.incometable tr:last-child td{
- border:none;
- text-align: left;
- padding: 0 10px;
- font-weight: bold;
+nav li{
+  display: inline; 
+  
 }
 
+nav{
+  width: 100%;
 
-
-.button{
- padding:5px 10px;  
- background-color:red; 
- color:white;
- border: none;
 }
 
-.forall input, .forall select{
-  padding: 8px;
-  margin: 0;
-  font-size: 16px;
+nav a{
+ text-decoration: none;
+  margin-right: 40px;
+  color: black;
+  font-size: 20px;
 }
 
-.w100{
+nav a:hover{
+background-color: black;
+color: white;
+padding: 5px;
+}
+
+
+
+.main-table input, select{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px; /* poți ajusta */
+  border: none;
+  border-radius: 4px;
+}
+.main-table{
   width: 100%;
 }
-.smalldeletebuton{
-  background-color: transparent;
-  border: none;
+.submit-button{
+  background:green; color:white; border:none; padding:5px; width:100px;
 }
-
+.submit-button:hover{cursor: pointer;}

@@ -1,6 +1,6 @@
 <div style="width:400px; margin:auto;">
 <p><?=$totalcurrencises?> Currencises <samp style="float:right"><a href="/currency/edit" class="linkbutton">Ad a currency</a></samp></p>
-<table class="customtable">
+<table style="width: 100%;">
   <tr>
 <th>Currency</th><th>Edit</th><th>Delete</th>
   </tr>

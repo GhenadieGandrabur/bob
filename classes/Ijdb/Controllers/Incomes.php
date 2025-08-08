@@ -53,47 +53,68 @@ class Incomes
     }
 
     public function saveEdit()
-    {
-        $data = $_POST['income']; 
-        $incomeId = $data['id'] ?? null;
-        $created = $data['created'] ?? date('Y-m-d', time());
-       
-        $incomeId = $this->incomesTable->save([
-            'id' => $incomeId,
-            'created' => $created,
-            'total_amount' => $data['total_amount']
-        ]);
-        if(empty($incomeId))
-        {
-            $incomeId = $this->incomesTable->find('created', $created)[0]->id;
-        }
+{
+    $data = $_POST['income']; 
+    $incomeId = $data['id'] ?? null;
+    $created = $data['created'] ?? date('Y-m-d', time());
 
-        $incomes = [];
-        for($i = 0; $i < sizeof($data['facevalue']); $i++)
-        {  
-            if(empty(empty($data['currency_id'][$i]) || empty($data['rate'][$i]) || $data['facevalue'][$i]) || empty($data['quantity'][$i]) || empty($data['amount'][$i]) || empty($data['summ'][$i]))
-            {
-                continue;
-            }          
-            $incomes[] = [
-                'income_id' => $incomeId,
-                'currency_id' => $data['currency_id'][$i],
-                'facevalue' => $data['facevalue'][$i],
-                'quantity' => $data['quantity'][$i],
-                'amount' => $data['amount'][$i],
-                'rate' => $data['rate'][$i],
-                'summ' => $data['summ'][$i]
-            ];
-        }
-        $this->incomesTable->clearFacevaluesByIncomeId($incomeId);
-        if(count($incomes) > 0)
-        {
-            $this->incomesTable->saveFacevalues($incomes);
-        }          
-        
+    // Curățăm suma totală: înlăturăm spații și înlocuim virgule cu punct
+    $totalAmount = str_replace([' ', ','], ['', '.'], $data['total_amount']);
 
-        header('location: /income/list');
+    // Salvăm în tabelul principal "income"
+    $incomeId = $this->incomesTable->save([
+        'id' => $incomeId,
+        'created' => $created,
+        'total_amount' => $totalAmount
+    ]);
+
+    // Dacă nu s-a întors un ID valid, îl căutăm după dată
+    if (empty($incomeId)) {
+        $incomeId = $this->incomesTable->find('created', $created)[0]->id;
     }
+
+    $incomes = [];
+
+    for ($i = 0; $i < count($data['facevalue']); $i++) {
+        // Curățăm fiecare valoare
+        $currency_id = $data['currency_id'][$i] ?? null;
+        $rate       = str_replace([' ', ','], ['', '.'], $data['rate'][$i] ?? '');
+        $facevalue  = $data['facevalue'][$i] ?? null;
+        $quantity   = str_replace([' ', ','], ['', '.'], $data['quantity'][$i] ?? '');
+        $amount     = str_replace([' ', ','], ['', '.'], $data['amount'][$i] ?? '');
+        $summ       = str_replace([' ', ','], ['', '.'], $data['summ'][$i] ?? '');
+
+        // Verificăm că toate sunt completate și numerice
+        if (
+            empty($currency_id) ||
+            !is_numeric($rate) || !is_numeric($facevalue) ||
+            !is_numeric($quantity) || !is_numeric($amount) || !is_numeric($summ)
+        ) {
+            continue;
+        }
+
+        $incomes[] = [
+            'income_id' => $incomeId,
+            'currency_id' => $currency_id,
+            'facevalue' => $facevalue,
+            'quantity' => $quantity,
+            'amount' => $amount,
+            'rate' => $rate,
+            'summ' => $summ
+        ];
+    }
+
+    // Ștergem înregistrările anterioare ale rândurilor pentru această încasare
+    $this->incomesTable->clearFacevaluesByIncomeId($incomeId);
+
+    // Salvăm doar dacă avem ceva valid
+    if (count($incomes) > 0) {
+        $this->incomesTable->saveFacevalues($incomes);
+    }
+
+    header('Location: /income/list');
+}
+
 
     
     public function edit()

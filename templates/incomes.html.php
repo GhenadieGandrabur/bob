@@ -7,7 +7,11 @@
     <style>
         table {
             width: 100%;
-           
+            border:none;
+        }
+        table td{
+            text-align: right;
+            padding: 0 20px;
         }
         .context-menu {
             display: none;
@@ -29,10 +33,17 @@
         .context-menu ul li:hover {
             background-color: #eee;
         }
+        table tr:last-child td {
+  border:none ;
+
+  font-weight: bold;
+  text-align: right;
+  padding:0 20px;
+}
     </style>
 <!-- </head>
 <body> -->
-    <div style="width: 80%; margin:auto;">
+    <div style="width: 60%; margin:auto;">
         <h2>Incomes <span style="font-size:14px;">(<?=number_format($totalAmount, 0, ',', ' ')?> ) </span><span style="font-size:14px;margin-left:20px;">  
         <?=number_format($totalAmount, 0, ',', ' ')?> </span><span style="font-size:14px;margin-left:20px;">: 4 = </span> <span style="font-size:14px;margin-left:20px;"><?=number_format($totalAmount/4, 0, ',', ' ')?> </span> </h2>
         <div style="display:flex; align-items: center; justify-content: space-between;">

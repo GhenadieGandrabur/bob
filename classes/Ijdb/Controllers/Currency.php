@@ -22,12 +22,21 @@ class Currency {
 					]
 				];
 	}
-
-	public function home() {
-		$title = 'Home';
-
-		return ['template' => 'home.html.php', 'title' => $title];
+	public function home()
+	{
+		if (!$this->authentication->isLoggedIn()) {
+			header('Location: /login');
+			exit;
+		}
+	
+		// Dacă e logat → redă pagina principală (incomes list sau altceva)
+		return [
+			'template' => 'incomes.html.php',
+			'title' => 'Incomes',
+			'variables' => []
+		];
 	}
+	
 
 	public function delete() {
 		$currency = $this->currencisesTable->findById($_POST['id']);

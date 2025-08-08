@@ -16,6 +16,8 @@
 		<link rel="stylesheet" type="text/css" href="https://css.cubit.md/css/buttons.css" />
       <link rel="stylesheet" type="text/css" href="https://css.cubit.md/css/form.css" />
       <link rel="stylesheet" type="text/css" href="https://css.cubit.md/css/shortcast.css" />
+      <link rel="stylesheet" type="text/css" href="/jokes.css" />
+
 
 		
 
@@ -32,16 +34,14 @@
 			<li><a href="/rate/list">Rate</a></li>
 			<li><a href="/income/list">Incams</a></li>
 			<li><a href="/logout">Log out</a></li>
-			<?php else: ?>
-				<li style="float:right; color:red"><a href="/login">Log in</a></li>
-		</ul>
-		<?php endif; ?>
+
+		<?php endif; ?> 
 			
 	</nav> 
 
-	<main>
+
 	<?=$output?>
-	</main>
+
 
 	
 </html>

@@ -34,9 +34,15 @@ class Login {
 		return ['template' => 'loginerror.html.php', 'title' => 'You are not logged in'];
 	}
 
-	public function logout() {
+	public function logout()
+	{
+		// Șterge sesiunea
 		unset($_SESSION);
 		session_destroy();
-		return ['template' => 'logout.html.php', 'title' => 'You have been logged out'];
+	
+		// Redirecționează la login
+		header('Location: /login');
+		exit;
 	}
+	
 }
