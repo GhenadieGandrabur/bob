@@ -157,7 +157,15 @@ class IjdbRoutes implements \Ninja\Routes {
 					'controller' => $currencyController,
 					'action' => 'home'
 				]
-			]
+				],
+				'income/print' => [
+					'GET' => [
+						 'controller' => $incomeController,
+						 'action' => 'print'
+					],
+					'login' => true
+			  ],
+			  
 		];
 
 		return $routes;

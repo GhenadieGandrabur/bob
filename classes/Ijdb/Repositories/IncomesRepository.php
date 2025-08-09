@@ -40,4 +40,15 @@ class IncomesRepository extends DatabaseTable{
     {
         $this->query("DELETE FROM income_facevalues WHERE income_id = $incomeId");
     }
+
+    public function getFaceValues($incomeId)
+    {
+        $query = 'SELECT * FROM income_facevalues WHERE income_id = :income_id';
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(['income_id' => $incomeId]);
+    
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+    }
+    
+
 }

@@ -27,16 +27,16 @@
 	<body>
 	<nav>
 		
-		<?php if ($loggedIn): ?>
+	<?php if (isset($loggedIn) && $loggedIn): ?>
+
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/currency/list">Currency</a></li>			
 			<li><a href="/rate/list">Rate</a></li>
 			<li><a href="/income/list">Incams</a></li>
 			<li><a href="/logout">Log out</a></li>
-
-		<?php endif; ?> 
-			
+		</ul>
+		<?php endif; ?> 			
 	</nav> 
 
 

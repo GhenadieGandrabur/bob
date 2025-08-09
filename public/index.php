@@ -15,3 +15,4 @@ catch (PDOException $e) {
 
 	include  __DIR__ . '/../templates/layout.html.php';
 }
+

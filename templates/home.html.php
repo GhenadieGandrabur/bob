@@ -1,2 +1,2 @@
-<h2>Income</h2>
+<h2>Home</h2>
 

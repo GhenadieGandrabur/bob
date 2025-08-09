@@ -31,8 +31,8 @@ class Currency {
 	
 		// Dacă e logat → redă pagina principală (incomes list sau altceva)
 		return [
-			'template' => 'incomes.html.php',
-			'title' => 'Incomes',
+			'template' => 'home.html.php',
+			'title' => 'Home',
 			'variables' => []
 		];
 	}
